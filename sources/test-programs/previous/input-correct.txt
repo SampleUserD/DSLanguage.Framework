@@ -1,0 +1,74 @@
+@begin
+  Сначала текст сканируется, например этот многострочный комментарий
+  превращается в нечто такое:
+
+  (type=Token.Types.Basics.Comment, value='...')
+
+  Далее это дело переходит в парсер.
+
+  Чтобы рассмотреть как именно должен работать парсер, 
+  то посмотрим на конструкции сложнее:
+
+  На языке написана конструкция:
+
+  def add(x of integer, y of integer) of integer 
+  {
+    return x + y
+  }
+
+  Это переходит в сканер и этот текст превращается в нечто:
+
+  (type=word, value='def')
+  (type=word, value='add')
+  (type=operator, value='(')
+  (type=word, value='x')
+  (type=word, value='of')
+  (type=word, value='integer')
+  (type=operator, value=',')
+  (type=word, value='y')
+  (type=word, value='of')
+  (type=word, value='integer')
+  (type=operator, value=')')
+  (type=word, value='of')
+  (type=word, value='integer')
+  (type=operator, value='{')
+  (type=word, value='return')
+  (type=word, value='x')
+  (type=operator, value='+')
+  (type=word, value='y')
+  (type=operator, value='}')
+
+   С помощью парсера строится абстрактное синтаксическое дерево:
+
+  ast([
+    function_assignature ({
+      name = 'add',
+      return_type = 'integer',
+      arguments = [
+        variable({
+          name = 'x',
+          type = 'integer'
+        }),
+        variable({
+          name = 'y',
+          type = 'integer'
+        })
+      ],
+      statements = [
+        return_statement({
+          argument = binary_operation(
+            operation = 'plus',
+            left = variable({
+              name = 'x',
+              type = 'integer'
+            }),
+            right = variable({
+              name = 'y',
+              type = 'integer'
+            })
+          )
+        })
+      ]
+    })
+  ])
+@end

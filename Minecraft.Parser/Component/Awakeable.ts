@@ -1,0 +1,4 @@
+interface Awakeable
+{
+  Awake(): void
+}

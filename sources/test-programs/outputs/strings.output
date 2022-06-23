@@ -1,0 +1,11 @@
+Error: Parse error: token(type=4, value=hello world!) can not be parsed correctly
+    at Parser.ParseStatement (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:169:15)
+    at Parser.ParseMultiplication (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:68:27)
+    at Parser.ParseAddition (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:50:27)
+    at Parser.ParseComparation (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:27:27)
+    at Parser.ParseComplexBoolean (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:9:27)
+    at Parser.ParseExpression (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:5:21)
+    at Parser.Parse (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/Minecraft.Parser/_Parser.js:175:28)
+    at Test__OutputReferenceAboutLanguageFromTo (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/sources/test.index.js:18:24)
+    at async Test__LanguageSubModulesAndOutputInformation (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/sources/test.index.js:46:13)
+    at async file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/testing-tsc/.compiled/sources/test.index.js:71:5

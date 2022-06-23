@@ -1,0 +1,4 @@
+interface Node 
+{
+  type: string
+}

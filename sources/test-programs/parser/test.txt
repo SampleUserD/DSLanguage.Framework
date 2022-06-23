@@ -1,0 +1,89 @@
+function FindElementByAttributeIn__FirstLayer(root: Element, attribute: Attribute): Element | undefined
+{
+  if (root.attributes.contains(attribute) == true)
+  {
+    return root
+  }
+
+  for (let index = 0; index < root.children.length; index++)
+  {
+    const child: Element = root.children[index]
+
+    if (child.type !== 'element')
+    {
+      continue
+    }
+
+    if (child.attributes.contains(attribute) == true)
+    {
+      return child
+    }
+  }
+}
+
+function FindElementByAttributeIn(root: Element, attribute: Attribute): Element
+{
+  if (FindElementsByAttributeIn__FirstLayer(root, attribute) !== undefined)
+    return root
+
+  return FindElementsByAttributeIn(root.children, attribute)
+}
+
+function FindElementsByAttributeIn(root: Element, attribute: Attribute): Element[]
+{
+  const elements: Element[] = []
+
+  if (FindElementsByAttributeIn__FirstLayer(root, attribute) !== undefined)
+    elements.push(root)
+
+  for (let index = 0; index < root.children.length; index++)
+  {
+    const child: Element = root.children[index]
+    const expectant: Element = FindElementByAttributeIn(child, attribute)
+
+    if (expectant !== undefined)
+      elements.push(expectant)
+  }
+
+  return elements
+}
+
+FindElementByAttributeIn(root, { name: 'package', value: '../package.xml' }) -> Element('author-data', { ... })
+
+#document
+[
+  {
+    "type": "element",
+    "tag": "author-data",
+    "attributes": [
+      {
+        name: 'package',
+        value: '../package.xml'
+      }
+    ],
+    "children": [
+      {
+        "type": "element",
+        "tag": "name",
+        "attributes": [],
+        "children": [
+          {
+            "type": "text",
+            "value": "Saitov Denis!"
+          }
+        ]
+      },
+      {
+        "type": "element",
+        "tag": "email",
+        "attributes": [],
+        "children": [
+          {
+            "type": "text",
+            "value": "hecntv140@gmail.com"
+          }
+        ]
+      }
+    ]
+  }
+]

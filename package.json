@@ -1,0 +1,27 @@
+{
+  "name": "testing-tsconfig-path",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "build-dev": "tsc --build . --watch",
+    "test-dev": "node ./.compiled/sources/test.index.js && cls"
+  },
+  "author": {
+    "name": "Saitov Denis",
+    "email": "hecntv140@gmail.com"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.1",
+    "@types/node": "^18.0.0",
+    "json-beautify": "^1.1.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.3"
+  },
+  "imports": {
+    "#sources/*": "./.compiled/sources/*.js",
+    "#root/*": "./.compiled/*.js",
+    "#commons/*": "./.compiled/Minecraft.Commons/*.js",
+    "#scanner/*": "./.compiled/Minecraft.Scanner/*.js"
+  }
+}

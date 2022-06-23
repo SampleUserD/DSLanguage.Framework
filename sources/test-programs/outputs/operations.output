@@ -1,0 +1,293 @@
+# REFERENCE: TEXT --> SCANNER --> PARSER
+----------- @begin "raw text" -----------
+
+1 + 2
+1 - 2
+1 / 2
+1 * 2
+true == true
+1 < 2
+2 > 1
+1 < 2 and 3 > 2
+1 < 2 or 2 < 1
+
+------------ @end "raw text" ------------
+----------- @begin "scanned text" -----------
+
+[
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 1,
+    "value": "-"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "/"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "*"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 1,
+    "value": "true"
+  },
+  {
+    "type": 0,
+    "value": "=="
+  },
+  {
+    "type": 1,
+    "value": "true"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "<"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 0,
+    "value": ">"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "<"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 1,
+    "value": "and"
+  },
+  {
+    "type": 2,
+    "value": "3"
+  },
+  {
+    "type": 0,
+    "value": ">"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": "<"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 1,
+    "value": "or"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 0,
+    "value": "<"
+  },
+  {
+    "type": 2,
+    "value": "1"
+  }
+]
+
+------------ @end "scanned text" ------------
+----------- @begin "parsed text (AST)" -----------
+
+[
+  {
+    "operator": "+",
+    "left": {
+      "type": "number",
+      "value": "1"
+    },
+    "right": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "operator": "-",
+    "left": {
+      "type": "number",
+      "value": "1"
+    },
+    "right": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "operator": "/",
+    "left": {
+      "type": "number",
+      "value": "1"
+    },
+    "right": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "operator": "*",
+    "left": {
+      "type": "number",
+      "value": "1"
+    },
+    "right": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "operator": "=",
+    "left": {
+      "type": "variable",
+      "value": "true"
+    },
+    "right": {
+      "type": "variable",
+      "value": "true"
+    }
+  },
+  {
+    "operator": "<",
+    "left": {
+      "type": "number",
+      "value": "1"
+    },
+    "right": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "operator": ">",
+    "left": {
+      "type": "number",
+      "value": "2"
+    },
+    "right": {
+      "type": "number",
+      "value": "1"
+    }
+  },
+  {
+    "operator": "and",
+    "left": {
+      "operator": "<",
+      "left": {
+        "type": "number",
+        "value": "1"
+      },
+      "right": {
+        "type": "number",
+        "value": "2"
+      }
+    },
+    "right": {
+      "operator": ">",
+      "left": {
+        "type": "number",
+        "value": "3"
+      },
+      "right": {
+        "type": "number",
+        "value": "2"
+      }
+    }
+  },
+  {
+    "operator": "or",
+    "left": {
+      "operator": "<",
+      "left": {
+        "type": "number",
+        "value": "1"
+      },
+      "right": {
+        "type": "number",
+        "value": "2"
+      }
+    },
+    "right": {
+      "operator": "<",
+      "left": {
+        "type": "number",
+        "value": "2"
+      },
+      "right": {
+        "type": "number",
+        "value": "1"
+      }
+    }
+  }
+]
+
+------------ @end "parsed text (AST)" ------------

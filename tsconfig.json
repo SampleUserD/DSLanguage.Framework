@@ -1,0 +1,33 @@
+{
+  "exclude": [ "node_modules", ".compiled" ],
+  "compilerOptions": {
+    "allowJs": false,
+
+    "target": "es2020",
+    "module": "es2020",
+
+    "moduleResolution": "node",
+
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+
+    "outDir": ".compiled",
+
+    "rootDir": ".",
+
+    "types": [ "node", "jest" ],
+
+    "baseUrl": ".",
+    "paths": {
+      "#sources/*": [ "sources/*.ts" ],
+      "#commons/*": [ "Minecraft.Commons/*.ts" ],
+      "#root/*": [ "*.ts" ],
+      "#scanner/*": [ "Minecraft.Scanner/*.ts" ]
+    }
+  },
+}

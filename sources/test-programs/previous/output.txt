@@ -1,0 +1,686 @@
+# REFERENCE: TEXT --> SCANNER --> PARSER
+----------- @begin "raw text" -----------
+
+let x = 1
+let x-y-z----t = 2
+
+def add(x, y) x + y
+def sub(x, y) x - y
+def div(x, y) x / y
+
+if (x-y-z----t * 10 == 20) and (x == 1) then 
+{
+  let x = 2
+  let t = 3
+
+  let n = ((x + t) * x-y-z----t + 1000) / 2 * 5
+
+  print (
+    x, 
+    y, 
+    x-y-z----t, 
+    n,
+    (x + y + x-y-z----t) * n
+  )
+}
+
+
+
+------------ @end "raw text" ------------
+----------- @begin "scanned text" -----------
+
+[
+  {
+    "type": 1,
+    "value": "let"
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "="
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 1,
+    "value": "let"
+  },
+  {
+    "type": 1,
+    "value": "x-y-z----t"
+  },
+  {
+    "type": 0,
+    "value": "="
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 1,
+    "value": "def"
+  },
+  {
+    "type": 1,
+    "value": "add"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 1,
+    "value": "def"
+  },
+  {
+    "type": 1,
+    "value": "sub"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 1,
+    "value": "-"
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 1,
+    "value": "def"
+  },
+  {
+    "type": 1,
+    "value": "div"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "/"
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 1,
+    "value": "if"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x-y-z----t"
+  },
+  {
+    "type": 0,
+    "value": "*"
+  },
+  {
+    "type": 2,
+    "value": "10"
+  },
+  {
+    "type": 0,
+    "value": "=="
+  },
+  {
+    "type": 2,
+    "value": "20"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 1,
+    "value": "and"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "=="
+  },
+  {
+    "type": 2,
+    "value": "1"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 1,
+    "value": "then"
+  },
+  {
+    "type": 0,
+    "value": "{"
+  },
+  {
+    "type": 1,
+    "value": "let"
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "="
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 1,
+    "value": "let"
+  },
+  {
+    "type": 1,
+    "value": "t"
+  },
+  {
+    "type": 0,
+    "value": "="
+  },
+  {
+    "type": 2,
+    "value": "3"
+  },
+  {
+    "type": 1,
+    "value": "let"
+  },
+  {
+    "type": 1,
+    "value": "n"
+  },
+  {
+    "type": 0,
+    "value": "="
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 1,
+    "value": "t"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 0,
+    "value": "*"
+  },
+  {
+    "type": 1,
+    "value": "x-y-z----t"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 2,
+    "value": "1000"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 0,
+    "value": "/"
+  },
+  {
+    "type": 2,
+    "value": "2"
+  },
+  {
+    "type": 0,
+    "value": "*"
+  },
+  {
+    "type": 2,
+    "value": "5"
+  },
+  {
+    "type": 1,
+    "value": "print"
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "x-y-z----t"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 1,
+    "value": "n"
+  },
+  {
+    "type": 0,
+    "value": ","
+  },
+  {
+    "type": 0,
+    "value": "("
+  },
+  {
+    "type": 1,
+    "value": "x"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 1,
+    "value": "y"
+  },
+  {
+    "type": 0,
+    "value": "+"
+  },
+  {
+    "type": 1,
+    "value": "x-y-z----t"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 0,
+    "value": "*"
+  },
+  {
+    "type": 1,
+    "value": "n"
+  },
+  {
+    "type": 0,
+    "value": ")"
+  },
+  {
+    "type": 0,
+    "value": "}"
+  }
+]
+
+------------ @end "scanned text" ------------
+----------- @begin "parsed text (AST)" -----------
+
+[
+  {
+    "name": "x",
+    "value": {
+      "type": "number",
+      "value": "1"
+    }
+  },
+  {
+    "name": "x-y-z----t",
+    "value": {
+      "type": "number",
+      "value": "2"
+    }
+  },
+  {
+    "name": "add",
+    "arguments": {
+      "nodes": [
+        {
+          "type": "variable",
+          "value": "x"
+        },
+        {
+          "type": "variable",
+          "value": "y"
+        }
+      ]
+    },
+    "block": [
+      {
+        "operator": "+",
+        "left": {
+          "type": "variable",
+          "value": "x"
+        },
+        "right": {
+          "type": "variable",
+          "value": "y"
+        }
+      }
+    ]
+  },
+  {
+    "name": "sub",
+    "arguments": {
+      "nodes": [
+        {
+          "type": "variable",
+          "value": "x"
+        },
+        {
+          "type": "variable",
+          "value": "y"
+        }
+      ]
+    },
+    "block": [
+      {
+        "operator": "-",
+        "left": {
+          "type": "variable",
+          "value": "x"
+        },
+        "right": {
+          "type": "variable",
+          "value": "y"
+        }
+      }
+    ]
+  },
+  {
+    "name": "div",
+    "arguments": {
+      "nodes": [
+        {
+          "type": "variable",
+          "value": "x"
+        },
+        {
+          "type": "variable",
+          "value": "y"
+        }
+      ]
+    },
+    "block": [
+      {
+        "operator": "/",
+        "left": {
+          "type": "variable",
+          "value": "x"
+        },
+        "right": {
+          "type": "variable",
+          "value": "y"
+        }
+      }
+    ]
+  },
+  {
+    "condition": {
+      "operator": "and",
+      "left": {
+        "operator": "=",
+        "left": {
+          "operator": "*",
+          "left": {
+            "type": "variable",
+            "value": "x-y-z----t"
+          },
+          "right": {
+            "type": "number",
+            "value": "10"
+          }
+        },
+        "right": {
+          "type": "number",
+          "value": "20"
+        }
+      },
+      "right": {
+        "operator": "=",
+        "left": {
+          "type": "variable",
+          "value": "x"
+        },
+        "right": {
+          "type": "number",
+          "value": "1"
+        }
+      }
+    },
+    "block": {
+      "type": "block",
+      "nodes": [
+        {
+          "name": "x",
+          "value": {
+            "type": "number",
+            "value": "2"
+          }
+        },
+        {
+          "name": "t",
+          "value": {
+            "type": "number",
+            "value": "3"
+          }
+        },
+        {
+          "name": "n",
+          "value": {
+            "operator": "/",
+            "left": {
+              "operator": "+",
+              "left": {
+                "operator": "*",
+                "left": {
+                  "operator": "+",
+                  "left": {
+                    "type": "variable",
+                    "value": "x"
+                  },
+                  "right": {
+                    "type": "variable",
+                    "value": "t"
+                  }
+                },
+                "right": {
+                  "type": "variable",
+                  "value": "x-y-z----t"
+                }
+              },
+              "right": {
+                "type": "number",
+                "value": "1000"
+              }
+            },
+            "right": {
+              "operator": "*",
+              "left": {
+                "type": "number",
+                "value": "2"
+              },
+              "right": {
+                "type": "number",
+                "value": "5"
+              }
+            }
+          }
+        },
+        {
+          "name": "print",
+          "arguments": {
+            "nodes": [
+              {
+                "type": "variable",
+                "value": "x"
+              },
+              {
+                "type": "variable",
+                "value": "y"
+              },
+              {
+                "type": "variable",
+                "value": "x-y-z----t"
+              },
+              {
+                "type": "variable",
+                "value": "n"
+              },
+              {
+                "operator": "*",
+                "left": {
+                  "operator": "+",
+                  "left": {
+                    "type": "variable",
+                    "value": "x"
+                  },
+                  "right": {
+                    "operator": "+",
+                    "left": {
+                      "type": "variable",
+                      "value": "y"
+                    },
+                    "right": {
+                      "type": "variable",
+                      "value": "x-y-z----t"
+                    }
+                  }
+                },
+                "right": {
+                  "type": "variable",
+                  "value": "n"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+]
+
+------------ @end "parsed text (AST)" ------------
