@@ -3,7 +3,7 @@ import * as Commons from '#root/DSLF.Commons/Main'
 import * as Parser from '#parser/Main'
 
 import Nodes = Parser.Nodes
-import Component = Parser.Component
+import Component = Parser.Components
 
 // @begin[assign parser nodes]
 
