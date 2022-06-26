@@ -25,10 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "#sources/*": [ "sources/*.ts" ],
-      "#commons/*": [ "Minecraft.Commons/*.ts" ],
+      "#commons/*": [ "DSLF.Commons/*.ts" ],
       "#root/*": [ "*.ts" ],
-      "#scanner/*": [ "Minecraft.Scanner/*.ts" ],
-      "#parser/*": [ "Minecraft.Parser/*.ts" ]
+      "#scanner/*": [ "DSLF.Scanner/*.ts" ],
+      "#parser/*": [ "DSLF.Parser/*.ts" ]
     }
   },
 }

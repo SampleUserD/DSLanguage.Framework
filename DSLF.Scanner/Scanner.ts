@@ -1,4 +1,4 @@
-import * as Commons from "#commons/Main"
+import * as Commons from "#root/DSLF.Commons/Main"
 import * as Token from "./Token/Main.js"
 import * as Types from "./Types.js"
 import * as Factory from "./HandlerFactory.js"

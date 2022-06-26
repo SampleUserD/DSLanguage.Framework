@@ -1,4 +1,4 @@
-import * as Commons from "#root/Minecraft.Commons/Main"
+import * as Commons from "#root/DSLF.Commons/Main"
 
 export function GetWordByLength<T>(cursor: Commons.Cursor<T>, length: number): T[]
 {

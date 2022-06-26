@@ -1,4 +1,4 @@
-import * as Commons from '#commons/Main'
+import * as Commons from '#root/DSLF.Commons/Main'
 import * as Scanner from '#scanner/Scanner'
 
 /**
