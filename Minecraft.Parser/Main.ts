@@ -1,4 +1,4 @@
-import * as Nodes from './Node/Main.js'
+import * as Nodes from './Nodes/Main.js'
 import * as Component from './Component.js'
 import * as Types from './Types.js'
 

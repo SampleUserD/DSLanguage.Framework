@@ -9,9 +9,8 @@ import Prioritization = Prioritizations.Base
 
 /**
  * @description
- * This class exists, because if connect environments by property Successor directly
- * You can not redo this chain
- * This allows you regenerate 
+ * This class prevents unexpected mutation of successor of environment-objects by parser
+ * By saving it as prioritization-object and late-binding of them
  */
 export class PrioritizationToEnvironmentContainer<T>
 {
@@ -20,16 +19,13 @@ export class PrioritizationToEnvironmentContainer<T>
 
   public constructor(private _toolkit: Toolkit) {}
 
-  private UpdateMinimalPriorityIfItPossible(priority: Priority.Base): void 
-  {
-    if (priority - this._minimalPriority > 1)
-      throw new Error(`Too big difference between passed priority and last maximal: ${ priority - this._minimalPriority } > 1`)
-
+  private TryUpdateMinimalPriority(priority: Priority.Base): void 
+  { 
     if (priority > this._minimalPriority)
       this._minimalPriority = priority
   }
 
-  private CreateEmptyContainerIfNotExist(priority: Priority.Base): void 
+  private TryCreateEmptyContainer(priority: Priority.Base): void 
   {
     if (this.Exists(priority) == false)
       this._prioritizations[priority] = []
@@ -44,8 +40,8 @@ export class PrioritizationToEnvironmentContainer<T>
   {
     Priority.AssertValidation(priority)
 
-    this.CreateEmptyContainerIfNotExist(priority)
-    this.UpdateMinimalPriorityIfItPossible(priority)
+    this.TryCreateEmptyContainer(priority)
+    this.TryUpdateMinimalPriority(priority)
 
     this._prioritizations[priority].push(parser)
   }
@@ -54,8 +50,13 @@ export class PrioritizationToEnvironmentContainer<T>
   {
     let currentEnvironment: Environment<T> = new Environment<T>([], this._toolkit)
 
-    for (let index = 0; index <= this._minimalPriority; index++)
+    for (let index = Priority.Default(); index <= this._minimalPriority; index++)
     {
+      if (index in this._prioritizations == false)
+      {
+        continue
+      }
+
       const previousEnvironment = currentEnvironment
 
       currentEnvironment = new Environment<T>(this._prioritizations[index], this._toolkit)
