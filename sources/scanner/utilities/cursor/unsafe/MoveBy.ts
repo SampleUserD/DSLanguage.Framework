@@ -1,4 +1,4 @@
-import * as Commons from "#root/Minecraft.Commons/Main"
+import * as Commons from "#root/DSLF.Commons/Main"
 
 export function MoveBy<T>(cursor: Commons.Cursor<T>, offset: number): void 
 {

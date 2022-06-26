@@ -1,5 +1,5 @@
 import * as MinecraftScanner from './scanner/Main.js'
-import * as Commons from '#commons/Main'
+import * as Commons from '#root/DSLF.Commons/Main'
 import * as Parser from '#parser/Main'
 
 import { fileURLToPath } from 'url'

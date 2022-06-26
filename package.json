@@ -22,8 +22,8 @@
   "imports": {
     "#sources/*": "./.compiled/sources/*.js",
     "#root/*": "./.compiled/*.js",
-    "#commons/*": "./.compiled/Minecraft.Commons/*.js",
-    "#scanner/*": "./.compiled/Minecraft.Scanner/*.js",
-    "#parser/*": "./.compiled/Minecraft.Parser/*.js"
+    "#commons/*": "./.compiled/DSLF.Commons/*.js",
+    "#scanner/*": "./.compiled/DSLF.Scanner/*.js",
+    "#parser/*": "./.compiled/DSLF.Parser/*.js"
   }
 }

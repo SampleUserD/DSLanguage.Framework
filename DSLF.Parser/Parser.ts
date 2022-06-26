@@ -1,4 +1,4 @@
-import * as Commons from '#commons/Main'
+import * as Commons from '#root/DSLF.Commons/Main'
 import * as Prioritization from './Prioritization/Main.js'
 
 import * as Nodes from './Nodes/Main.js'
