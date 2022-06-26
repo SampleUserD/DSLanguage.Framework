@@ -7,7 +7,7 @@
   </h2>
 </div>
 <div>
-  <h2>It has two fundamental subsystems</h2>
+  <b>It has two fundamental subsystems</b>
   <dl> 
     <dt>Scanner</dt>
     <dd>
@@ -24,7 +24,7 @@
   </dl>
 </div>
 <div>
-  <h3 style='color: red'>IMPORTANT NOTE</h3> 
+  <h4 color="red">Important note</h4> 
   <p>DO NOT RECOMMEND USE IT AS LONG AS IT IS NOT REALED</p>
   <p>BECAUSE API CAN CHANGE AT ANY MOMENT WITH NO BACK-COMPABILITY</p>
 </div>
