@@ -1,11 +1,11 @@
 import * as MinecraftScanner from './scanner/Main.js'
+import * as Commons from '#commons/Main'
+import * as Parser from '#parser/Main'
 
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
 import beautify from "json-beautify"
-
-import { Parser } from '#root/Minecraft.Parser/_Parser'
 
 const __filename: string = fileURLToPath(import.meta.url)
 const __dirname: string = path.dirname(__filename)
@@ -22,9 +22,11 @@ async function Test__OutputReferenceAboutLanguageFromTo(input: string, output: s
   const data = await fs.promises.readFile(input) as Buffer
 
   const tokens = MinecraftScanner.Base.Scan(data?.toString())
+  const tokensCursor = new Commons.Cursor(tokens) 
 
-  const parser = new Parser()
-  const ast = parser.Parse(tokens)
+  // const toolkit = new Parser.Toolkit(tokensCursor)
+  // const parser = new Parser.Base(tokens, toolkit)
+  // const ast = parser.Parse()
 
 
   await fs.promises.writeFile(output, '# REFERENCE: TEXT --> SCANNER --> PARSER\n')
@@ -39,9 +41,9 @@ async function Test__OutputReferenceAboutLanguageFromTo(input: string, output: s
   await fs.promises.appendFile(output, `\n\n------------ @end "scanned text" ------------\n`)
 
   // @block "parsed text (AST)"
-  await fs.promises.appendFile(output, `----------- @begin "parsed text (AST)" -----------\n\n`)
-  await fs.promises.appendFile(output, `${ beautify(ast, null, 2) }`)
-  await fs.promises.appendFile(output, `\n\n------------ @end "parsed text (AST)" ------------`)
+  // await fs.promises.appendFile(output, `----------- @begin "parsed text (AST)" -----------\n\n`)
+  // await fs.promises.appendFile(output, `${ beautify(ast, null, 2) }`)
+  // await fs.promises.appendFile(output, `\n\n------------ @end "parsed text (AST)" ------------`)
 }
 
 async function Test__ClearOutputDirectory(): Promise<void>

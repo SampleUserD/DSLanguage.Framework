@@ -1,53 +1,6 @@
-# REFERENCE: TEXT --> SCANNER --> PARSER
------------ @begin "raw text" -----------
-
-1 
-1. 
-1.10
-1.1234567890
-
------------- @end "raw text" ------------
------------ @begin "scanned text" -----------
-
-[
-  {
-    "type": 2,
-    "value": "1"
-  },
-  {
-    "type": 2,
-    "value": "1."
-  },
-  {
-    "type": 2,
-    "value": "1.10"
-  },
-  {
-    "type": 2,
-    "value": "1.1234567890"
-  }
-]
-
------------- @end "scanned text" ------------
------------ @begin "parsed text (AST)" -----------
-
-[
-  {
-    "type": "number",
-    "value": "1"
-  },
-  {
-    "type": "number",
-    "value": "1."
-  },
-  {
-    "type": "number",
-    "value": "1.10"
-  },
-  {
-    "type": "number",
-    "value": "1.1234567890"
-  }
-]
-
------------- @end "parsed text (AST)" ------------
+TypeError: this._components is not iterable
+    at Environment.Parse (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/Minecraft.Parser/Environment.js:9:36)
+    at Parser.Parse (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/Minecraft.Parser/Parser.js:17:35)
+    at Test__OutputReferenceAboutLanguageFromTo (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:21:24)
+    at async Test__LanguageSubModulesAndOutputInformation (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:49:13)
+    at async file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:74:5

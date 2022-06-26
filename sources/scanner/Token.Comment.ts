@@ -4,6 +4,7 @@ import * as Utilities from "./utilities/Main.js"
 
 class CommentHandler implements Scanner.Handler
 {
+  // TOO MANY RESPONSOBILITIES!
   public Execute(cursor: Scanner.Commons.Cursor, container: Scanner.Token.Base[]): void 
   {
     const accumulator: Scanner.Commons.Accumulator = Scanner.Commons.CreateRegularExpressionAccumulator(/[^\n]/)

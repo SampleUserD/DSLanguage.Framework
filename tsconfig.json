@@ -27,7 +27,8 @@
       "#sources/*": [ "sources/*.ts" ],
       "#commons/*": [ "Minecraft.Commons/*.ts" ],
       "#root/*": [ "*.ts" ],
-      "#scanner/*": [ "Minecraft.Scanner/*.ts" ]
+      "#scanner/*": [ "Minecraft.Scanner/*.ts" ],
+      "#parser/*": [ "Minecraft.Parser/*.ts" ]
     }
   },
 }

@@ -1,13 +1,13 @@
-0) test.comments.txt [passed]
-1) test.corner-cases.txt [passed]
-2) test.function-definition.txt [passed]
-3) test.numbers.txt [passed]
-4) test.operations.txt [passed]
+0) test.comments.txt [unpassed]
+1) test.corner-cases.txt [unpassed]
+2) test.function-definition.txt [unpassed]
+3) test.numbers.txt [unpassed]
+4) test.operations.txt [unpassed]
 5) test.strings.txt [unpassed]
-6) test.variables.txt [passed]
+6) test.variables.txt [unpassed]
 
 #[SHORT INFORMATION]
 ALL TESTS LENGTH - 7
-PASSED TESTS LENGTH - 6
-UNPASSED TESTS LENGTH - 1
-SUCCESS RATE - 85.71%
+PASSED TESTS LENGTH - 0
+UNPASSED TESTS LENGTH - 7
+SUCCESS RATE - 0.00%
