@@ -1,4 +1,4 @@
-import * as Scanner from "#root/Minecraft.Scanner/Scanner"
+import * as Scanner from "#root/DSLF.Scanner/Scanner"
 
 import { InfiniteRecursion } from "./Behavior.InfiniteRecursion.js"
 
