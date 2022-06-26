@@ -1,7 +1,7 @@
 import * as Commons from '#commons/Main'
 import * as Prioritization from './Prioritization/Main.js'
 
-import * as Nodes from './Node/Main.js'
+import * as Nodes from './Nodes/Main.js'
 import * as Component from './Component.js'
 import * as DefaultTypes from './Types.js'
 

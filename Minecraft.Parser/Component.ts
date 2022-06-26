@@ -1,7 +1,7 @@
 import { Environment } from './Environment.js'
 import { Toolkit } from './Toolkit.js'
 
-import * as Nodes from './Node/Main.js'
+import * as Nodes from './Nodes/Main.js'
 
 interface Component<T extends Nodes.Base>
 {

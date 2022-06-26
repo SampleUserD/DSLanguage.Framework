@@ -5,12 +5,6 @@ import * as Parser from '#parser/Main'
 import Nodes = Parser.Nodes
 import Component = Parser.Component
 
-const tokens = MinecraftScanner.Base.Scan('"hello world" + 1')
-
-const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens)
-const toolkit: Parser.Toolkit = new Parser.Toolkit(cursor)
-const parser: Parser.Base<Nodes.Executable> = new Parser.Base(cursor, toolkit)
-
 // @begin[assign parser nodes]
 
 type Arithmetic = Nodes.Executable<number>
@@ -149,10 +143,20 @@ class AdditionParser implements Component.Base<Arithmetic>
 
 // @end[assign parser components]
 
+// [USE CASE]
+
+const tokens = MinecraftScanner.Base.Scan('3 + 2 * 2 2 + 3 + 5')
+
+const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens)
+const toolkit: Parser.Toolkit = new Parser.Toolkit(cursor)
+const parser: Parser.Base<Nodes.Executable<any>> = new Parser.Base(cursor, toolkit)
+
 parser.Use(0, new IntegerParser())
 parser.Use(0, new StringParser())
 
 parser.Use(1, new MultiplicationParser())
 parser.Use(2, new AdditionParser())
 
-console.log(parser.Parse())
+const ast: Nodes.Executable<any>[] = parser.Parse()
+
+ast.forEach(node => console.log(node.Execute()))
