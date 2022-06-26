@@ -23,7 +23,7 @@
   <p>
     DO NOT RECOMMEND USE IT AS LONG AS IT IS NOT REALISED,
     BECAUSE API CAN CHANGE AT ANY MOMENT WITH NO BACK-COMPABILITY.
-    **DOWNLOAD THIS PACKAGE ON YOUR OWN RISK!**
+    <b>DOWNLOAD THIS PACKAGE ON YOUR OWN RISK!</b>
   </p>
 </div>
 
@@ -35,52 +35,52 @@
   It is necessary intermediate step for building AST (abstract syntax tree).
 
   You can plug in this subsystem into your code as:
-  ```tsc import * as Scanner from '<path-to-framework>/DSLF.Scanner'```
+  ```js import * as Scanner from '<path-to-framework>/DSLF.Scanner'```
 
   This subsystem has two main methods:
-  * ```tsc Scan(input: string): Scanner.Token.Base[]``` - scans input by customisable handler
-  * ```tsc AddHandler(handler: Scanner.Handler): void``` - adds customisable handler
+  - ```js Scan(input: string): Scanner.Token.Base[]``` - scans input by customisable handler
+  - ```js AddHandler(handler: Scanner.Handler): void``` - adds customisable handler
 
 
 # Parser subsystems
   This subsystem translates given stream of token to AST (see below an example).
   
   You can plug in this subsystem into your code as:
-  ```tsc import * as Parser from '<path-to-framework>/DSLF.Parser'```
+  ```js import * as Parser from '<path-to-framework>/DSLF.Parser'```
 
   This subsystem has such public components:
-    * ```tsc namespace Parser.Nodes```
-    * ```tsc namespace Parser.Types```
-    * ```tsc namespace Parser.Components```
-    * ```tsc class Parser.Environment<T extends Parser.Nodes.Base>```
-    * ```tsc Parser.Base<T extends Parser.Nodes.Base>```
+  - ```js namespace Parser.Nodes```
+  - ```js namespace Parser.Types```
+  - ```js namespace Parser.Components```
+  - ```js class Parser.Environment<T extends Parser.Nodes.Base>```
+  - ```js Parser.Base<T extends Parser.Nodes.Base>```
 
- - ## Parser.Base
-    - Parser.Base is typeof parser itself. 
-    - This class has two main methods you can use:
-      - ```tsc Use(priority: number, parser: Parser.Component.Base<T>): void```
-      - ```tsc Parse(): T[]```
+  ## Parser.Base
+  - Parser.Base is typeof parser itself. 
+  - This class has two main methods you can use:
+    - ```js Use(priority: number, parser: Parser.Component.Base<T>): void```
+    - ```js Parse(): T[]```
 
-  - ## Parser.Nodes 
-    - Parser.Nodes is the namespace that contains basic definitions for nodes
-    - Node is element of AST (abstract syntax tree).
-    - Members:
-      - ```tsc interface Base``` - definition for basic node
-      - ```tsc interface Translatable``` - definition for translatable node
-        - ```tsc Translatable.Translate(): string``` - translation strategy
-      - ```tsc interface Executable<T> extends Base``` - definition for executable node
-        - ```tsc Executable.Execute(): T``` - execution strategy
-      - ```tsc namespace Default``` - namespace that contains default nodes realisations
-        - ```tsc namespace Default.Block```
-        - ```tsc namespace Default.Primitives```
+  ## Parser.Nodes 
+  - Parser.Nodes is the namespace that contains basic definitions for nodes
+  - Node is element of AST (abstract syntax tree).
+  - Members:
+    - ```js interface Base``` - definition for basic node
+    - ```js interface Translatable``` - definition for translatable node
+      - ```js Translatable.Translate(): string``` - translation strategy
+    - ```js interface Executable<T> extends Base``` - definition for executable node
+      - ```js Executable.Execute(): T``` - execution strategy
+    - ```js namespace Default``` - namespace that contains default nodes realisations
+      - ```js namespace Default.Block```
+      - ```js namespace Default.Primitives```
 
-  - ## Parser.Component
-    - Parser.Component is the namespace that contains basic definitions for components
-    - Components are the main functional parts of the parser (aka "subparsers"). 
-      The main purpose of the components is generation AST (abstract syntax tree)
-    - Members:
-      - ```tsc interface Base<T extends Parser.Nodes.Base>``` - definition for basic component
-        - ```tsc Base.Parse(environment: Environment<T>): T``` - parsing strategy
+  ## Parser.Component
+  - Parser.Component is the namespace that contains basic definitions for components
+  - Components are the main functional parts of the parser (aka "subparsers"). 
+    The main purpose of the components is generation AST (abstract syntax tree)
+  - Members:
+    - ```js interface Base<T extends Parser.Nodes.Base>``` - definition for basic component
+    - ```js Base.Parse(environment: Environment<T>): T``` - parsing strategy
 
   - ## Parser.Types
     - Parser.Types is the namespace that contains basic type declarations that necessary for parser
