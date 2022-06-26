@@ -49,7 +49,7 @@ export class PrioritizationToEnvironmentContainer<T>
 
     for (let index = Priority.Default(); index <= this._minimalPriority; index++)
     {
-      if (index in this._prioritizations == false)
+      if (this.Exists(index) == false)
       {
         continue
       }
