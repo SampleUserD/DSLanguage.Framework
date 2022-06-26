@@ -2,7 +2,6 @@ import * as Component from './Component.js'
 import * as Prioritizations from './Prioritization/Main.js'
 
 import { Environment } from './Environment.js'
-import { Toolkit } from './Toolkit.js'
 
 import Priority = Prioritizations.Priority
 import Prioritization = Prioritizations.Base
@@ -16,8 +15,6 @@ export class PrioritizationToEnvironmentContainer<T>
 {
   private _prioritizations: Prioritization<T> = {}
   private _minimalPriority: Priority.Base = Priority.Default()
-
-  public constructor(private _toolkit: Toolkit) {}
 
   private TryUpdateMinimalPriority(priority: Priority.Base): void 
   { 
@@ -48,7 +45,7 @@ export class PrioritizationToEnvironmentContainer<T>
 
   public GenerateEnvironment(): Environment<T>
   {
-    let currentEnvironment: Environment<T> = new Environment<T>([], this._toolkit)
+    let currentEnvironment: Environment<T> = new Environment<T>([])
 
     for (let index = Priority.Default(); index <= this._minimalPriority; index++)
     {
@@ -59,7 +56,7 @@ export class PrioritizationToEnvironmentContainer<T>
 
       const previousEnvironment = currentEnvironment
 
-      currentEnvironment = new Environment<T>(this._prioritizations[index], this._toolkit)
+      currentEnvironment = new Environment<T>(this._prioritizations[index])
       currentEnvironment.Successor = previousEnvironment
     }
 

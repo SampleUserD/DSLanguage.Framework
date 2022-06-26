@@ -2,11 +2,10 @@ import * as Nodes from './Nodes/Main.js'
 import * as Components from './Component.js'
 
 import { Descendant } from './Descendant.js'
-import { Toolkit } from './Toolkit.js'
 
 export class Environment<T extends Nodes.Base> extends Descendant<T | void> 
 {
-  public constructor(private _components: Components.Base<T>[], private _toolkit: Toolkit) 
+  public constructor(private _components: Components.Base<T>[]) 
   {
     super()
   }
@@ -15,7 +14,7 @@ export class Environment<T extends Nodes.Base> extends Descendant<T | void>
   {
     for (let component of this._components)
     {
-      const result: T | void = component.Parse(this, this._toolkit)
+      const result: T | void = component.Parse(this)
 
       if (result !== undefined)
       {
