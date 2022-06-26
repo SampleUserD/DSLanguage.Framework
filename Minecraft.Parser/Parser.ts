@@ -1,31 +1,35 @@
-import * as Scanner from '#scanner/Scanner' 
 import * as Commons from '#commons/Main'
+import * as Prioritization from './Prioritization/Main.js'
 
-import * as Nodes from './Node.js'
-import * as Components from './Component.js'
+import * as Nodes from './Node/Main.js'
+import * as Component from './Component.js'
+import * as DefaultTypes from './Types.js'
 
-export class __Parser__ 
+import { Toolkit } from './Toolkit.js'
+import { Environment } from './Environment.js'
+import { PrioritizationToEnvironmentContainer } from './PrioritizationToEnvironmentContainer.js'
+
+import Priority = Prioritization.Priority.Base
+
+export class Parser<T extends Nodes.Base> 
 {
-  private _components: Components.Base[] = []
+  private _container: PrioritizationToEnvironmentContainer<T> = new PrioritizationToEnvironmentContainer(this._toolkit)
 
-  public UseComponent(component: Components.Base): void 
+  public constructor(private _cursor: Commons.Cursor<DefaultTypes.Token>, private _toolkit: Toolkit) {}
+
+  public Use(priority: Priority, parser: Component.Base<T>): void 
   {
-    this._components.push(component)
+    this._container.Add(priority, parser)
   }
 
-  private ParseExpression(cursor: Commons.Cursor<Scanner.Token.Base>, tree: Nodes.Base[]): Nodes.Base
+  public Parse(): T[] 
   {
-    throw new Error(`Parse error: token(type=, value=) can not be parsed correctly`)
-  }
+    const tree: T[] = []
+    const environment: Environment<T> = this._container.GenerateEnvironment()
 
-  public Parse(tokens: Scanner.Token.Base[]): Nodes.Base[] 
-  {
-    const cursor: Commons.Cursor<Scanner.Token.Base> = new Commons.Cursor(tokens)
-    const tree: Nodes.Base[] = []
-
-    while (cursor.Done == false)
+    while (this._cursor.Done == false)
     {
-      tree.push(this.ParseExpression(cursor, tree))     
+      tree.push(environment.Parse() as T)
     }
 
     return tree

@@ -1,9 +1,11 @@
-import * as Nodes from './Node.js'
-import * as Commons from './Types.js'
+import { Environment } from './Environment.js'
+import { Toolkit } from './Toolkit.js'
 
-interface Component
+import * as Nodes from './Node/Main.js'
+
+interface Component<T extends Nodes.Base>
 {
-  Parse(cursor: Commons.Cursor, tree: Commons.Token[]): Nodes.Base
+  Parse(environment: Environment<T>, toolkit: Toolkit): T | void
 }
 
 export { Component as Base }

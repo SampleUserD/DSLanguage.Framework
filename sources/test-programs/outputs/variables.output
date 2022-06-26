@@ -1,59 +1,6 @@
-# REFERENCE: TEXT --> SCANNER --> PARSER
------------ @begin "raw text" -----------
-
-let x = 0
-# Feature: let x: integer = 0 for @a
-x
-
------------- @end "raw text" ------------
------------ @begin "scanned text" -----------
-
-[
-  {
-    "type": 1,
-    "value": "let"
-  },
-  {
-    "type": 1,
-    "value": "x"
-  },
-  {
-    "type": 0,
-    "value": "="
-  },
-  {
-    "type": 2,
-    "value": "0"
-  },
-  {
-    "type": 5,
-    "value": " Feature: let x: integer = 0 for @a\r"
-  },
-  {
-    "type": 1,
-    "value": "x"
-  }
-]
-
------------- @end "scanned text" ------------
------------ @begin "parsed text (AST)" -----------
-
-[
-  {
-    "name": "x",
-    "value": {
-      "type": "number",
-      "value": "0"
-    }
-  },
-  {
-    "type": "comment",
-    "value": " Feature: let x: integer = 0 for @a\r"
-  },
-  {
-    "type": "variable",
-    "value": "x"
-  }
-]
-
------------- @end "parsed text (AST)" ------------
+TypeError: this._components is not iterable
+    at Environment.Parse (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/Minecraft.Parser/Environment.js:9:36)
+    at Parser.Parse (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/Minecraft.Parser/Parser.js:17:35)
+    at Test__OutputReferenceAboutLanguageFromTo (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:21:24)
+    at async Test__LanguageSubModulesAndOutputInformation (file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:49:13)
+    at async file:///C:/Users/%D0%94%D0%B5%D0%BD%D0%B8%D1%81/Desktop/Language.Framework/.compiled/sources/test.index.js:74:5
