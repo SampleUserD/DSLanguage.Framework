@@ -65,13 +65,15 @@ class Addition implements Arithmetic
 
 class IntegerParser implements Component.Base<Arithmetic>
 {
-  public Parse(environment: Parser.Environment<Arithmetic>, toolkit: Parser.Toolkit): void | Arithmetic 
-  {
-    if (toolkit.Cursor.Current().type == Parser.Types.TokenTypes.Number)
-    {
-      const number: string = toolkit.Cursor.Current().value
+  public constructor(private _cursor: Parser.Types.Cursor) {}
 
-      toolkit.Cursor.Next()
+  public Parse(environment: Parser.Environment<Arithmetic>): void | Arithmetic 
+  {
+    if (this._cursor.Current().type == Parser.Types.TokenTypes.Number)
+    {
+      const number: string = this._cursor.Current().value
+
+      this._cursor.Next()
 
       return new Integer(parseFloat(number))
     }
@@ -80,13 +82,15 @@ class IntegerParser implements Component.Base<Arithmetic>
 
 class StringParser implements Component.Base<Nodes.Executable<string>>
 {
-  public Parse(environment: Parser.Environment<Nodes.Executable<string>>, toolkit: Parser.Toolkit): void | Nodes.Executable<string> 
-  {
-    if (toolkit.Cursor.Current().type == Parser.Types.TokenTypes.String)
-    {
-      const string: string = toolkit.Cursor.Current().value
+  public constructor(private _cursor: Parser.Types.Cursor) {}
 
-      toolkit.Cursor.Next()
+  public Parse(environment: Parser.Environment<Nodes.Executable<string>>): void | Nodes.Executable<string> 
+  {
+    if (this._cursor.Current().type == Parser.Types.TokenTypes.String)
+    {
+      const string: string = this._cursor.Current().value
+
+      this._cursor.Next()
 
       return new String(string)
     }
@@ -95,15 +99,17 @@ class StringParser implements Component.Base<Nodes.Executable<string>>
 
 class MultiplicationParser implements Component.Base<Arithmetic>
 {
-  public Parse(environment: Parser.Environment<Arithmetic>, toolkit: Parser.Toolkit): Arithmetic 
+  public constructor(private _cursor: Parser.Types.Cursor) {}
+
+  public Parse(environment: Parser.Environment<Arithmetic>): Arithmetic 
   {
     let result: Arithmetic = environment.ExecuteSuccessorParser() as Arithmetic
 
-    while (toolkit.Cursor.Done == false)
+    while (this._cursor.Done == false)
     {
-      if (toolkit.Cursor.Current().value == '*')
+      if (this._cursor.Current().value == '*')
       {
-        toolkit.Cursor.Next()
+        this._cursor.Next()
 
         result = new Multiplication(result, environment.ExecuteSuccessorParser() as Arithmetic)
 
@@ -119,15 +125,17 @@ class MultiplicationParser implements Component.Base<Arithmetic>
 
 class AdditionParser implements Component.Base<Arithmetic>
 {
-  public Parse(environment: Parser.Environment<Arithmetic>, toolkit: Parser.Toolkit): Arithmetic 
+  public constructor(private _cursor: Parser.Types.Cursor) {}
+
+  public Parse(environment: Parser.Environment<Arithmetic>): Arithmetic 
   {
     let result: Arithmetic = environment.ExecuteSuccessorParser() as Arithmetic
 
-    while (toolkit.Cursor.Done == false)
+    while (this._cursor.Done == false)
     {
-      if (toolkit.Cursor.Current().value == '+')
+      if (this._cursor.Current().value == '+')
       {
-        toolkit.Cursor.Next()
+        this._cursor.Next()
 
         result = new Addition(result, environment.ExecuteSuccessorParser() as Arithmetic)
 
@@ -148,14 +156,13 @@ class AdditionParser implements Component.Base<Arithmetic>
 const tokens = MinecraftScanner.Base.Scan('3 + 2 * 2 2 + 3 + 5')
 
 const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens)
-const toolkit: Parser.Toolkit = new Parser.Toolkit(cursor)
-const parser: Parser.Base<Nodes.Executable<any>> = new Parser.Base(cursor, toolkit)
+const parser: Parser.Base<Nodes.Executable<any>> = new Parser.Base(cursor)
 
-parser.Use(0, new IntegerParser())
-parser.Use(0, new StringParser())
+parser.Use(0, new IntegerParser(cursor))
+parser.Use(0, new StringParser(cursor))
 
-parser.Use(1, new MultiplicationParser())
-parser.Use(2, new AdditionParser())
+parser.Use(1, new MultiplicationParser(cursor))
+parser.Use(2, new AdditionParser(cursor))
 
 const ast: Nodes.Executable<any>[] = parser.Parse()
 
