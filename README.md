@@ -1,10 +1,10 @@
 # DSLanguage.Framework
 <div>
-  <h1>
+  <h2>
     <em>
       This framework can help you create your own programming language from scratch.
     </em>
-  </h1>
+  </h2>
 </div>
 <div>
   <h2>It has two fundamental subsystems</h2>
