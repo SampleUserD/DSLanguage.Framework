@@ -76,11 +76,11 @@
 
   ## Parser.Component
   - Parser.Component is the namespace that contains basic definitions for components
-  - Components are the main functional parts of the parser (aka "subparsers"). 
+  - Components are the main functional parts of the parser (a.k.a "subparsers"). 
     The main purpose of the components is generation AST (abstract syntax tree)
   - Members:
     - `interface Base<T extends Parser.Nodes.Base>` - definition for basic component
-    - `Base.Parse(environment: Environment<T>): T` - parsing strategy
+      - `Base.Parse(environment: Environment<T>): T` - parsing strategy
 
   ## Parser.Types
   - Parser.Types is the namespace that contains basic type declarations that necessary for parser
@@ -88,6 +88,6 @@
   ## Examples of usage
     You can look in directory 'examples/parser' to see how this subsystem works
 
-===
+___
 
 ***This package created by Saitov Denis***
