@@ -4,6 +4,7 @@ import * as Scanner from "#scanner/Scanner"
 import DefaultTokenTypes = Scanner.Token.Types.Basic
 
 export { DefaultTokenTypes as TokenTypes }
+
 export type TokenValue = Scanner.Token.Value
 export type Token = Scanner.Token.Base
 
