@@ -53,7 +53,7 @@
   - `namespace Parser.Types`
   - `namespace Parser.Components`
   - `class Parser.Environment<T extends Parser.Nodes.Base>`
-  - `Parser.Base<T extends Parser.Nodes.Base>`
+  - `class Parser.Base<T extends Parser.Nodes.Base>`
 
   ## Parser.Base
   - Parser.Base is typeof parser itself. 
@@ -84,5 +84,10 @@
 
   ## Parser.Types
   - Parser.Types is the namespace that contains basic type declarations that necessary for parser
+
+  ## Examples of usage
+    You can look in directory 'examples/parser' to see how this subsystem works
+
+===
 
 ***This package created by Saitov Denis***
