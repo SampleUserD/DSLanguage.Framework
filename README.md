@@ -36,11 +36,40 @@
 
   You can plug in this subsystem into your code as:
   `import * as Scanner from '<path-to-framework>/DSLF.Scanner'`
+  
+  This subsystem has such public components:
+  - `namespace Scanner.Token`
+  - `namespace Scanner.Commons`
+  - `interface Scanner.Handler`
+  - `class Scanner.Base`
 
-  This subsystem has two main methods:
-  - `Scan(input: string): Scanner.Token.Base[]` - scans input by customisable handler
-  - `AddHandler(handler: Scanner.Handler): void` - adds customisable handler
+  ## Scanner.Token [IN REFACTORING]
+  - Scanner.Token is the namespaces that contains basic definition for Token
+  - Token is an object that contains specific information about symbol (DTO)
+  - Members:
+    - `type Token.Base` - basic definition of token
+      - `type: Token.Types.Basic` - type of token
+      - `value: Token.Value` - symbol
+      - `information: Token.Information.Base` - additional information about token (useless at the moment)
+        - `placement: Placement` - information about placement of symbol (useful for debugging)
 
+  ## Scanner.Commons
+  - Scanner.Commons is the namespace that contains basic type declarations that necessary for scanner
+  
+  ## Scanner.Handler
+  - Scanner.Handler is the basic definition for handlers
+  - Handlers are main functional parts of scanner (a. k. a "subscanners")
+  - Members:
+    - `Execute(cursor: Scanner.Commons.Cursor, tokens: Scanner.Token.Base[]): void` - scanning strategy  
+
+  ## Scanner.Base
+  - Scanner.Base is the type of scanner itself
+  - This class has two main methods to use:
+    - `Scan(input: string): Scanner.Token.Base[]` - scans input by customisable handler
+    - `AddHandler(handler: Scanner.Handler): void` - adds customisable handler
+
+  ## Examples of usage
+    You can look in directory 'examples/scanner' to see how this subsystem works
 
 # Parser subsystems
   This subsystem translates given stream of token to AST (see below an example).
@@ -49,23 +78,20 @@
   `import * as Parser from '<path-to-framework>/DSLF.Parser'`
 
   This subsystem has such public components:
-  - `namespace Parser.Nodes`
   - `namespace Parser.Types`
+  - `namespace Parser.Nodes`
   - `namespace Parser.Components`
   - `class Parser.Environment<T extends Parser.Nodes.Base>`
   - `class Parser.Base<T extends Parser.Nodes.Base>`
-
-  ## Parser.Base
-  - Parser.Base is typeof parser itself. 
-  - This class has two main methods you can use:
-    - `Use(priority: number, parser: Parser.Component.Base<T>): void`
-    - `Parse(): T[]`
+  
+  ## Parser.Types
+  - Parser.Types is the namespace that contains basic type declarations that necessary for parser
 
   ## Parser.Nodes 
   - Parser.Nodes is the namespace that contains basic definitions for nodes
-  - Node is element of AST (abstract syntax tree).
+  - Node is an element of AST (abstract syntax tree).
   - Members:
-    - `interface Base` - definition for basic node
+    - `interface Base` - basic definition of node
     - `interface Translatable` - definition for translatable node
       - `Translatable.Translate(): string` - translation strategy
     - `interface Executable<T> extends Base` - definition for executable node
@@ -82,8 +108,15 @@
     - `interface Base<T extends Parser.Nodes.Base>` - definition for basic component
       - `Base.Parse(environment: Environment<T>): T` - parsing strategy
 
-  ## Parser.Types
-  - Parser.Types is the namespace that contains basic type declarations that necessary for parser
+  ## Parser.Environment
+  - Parser.Environment is an environment of components execution
+  - It is a internal component of system so do not use as real class, but as type declaration
+
+  ## Parser.Base
+  - Parser.Base is the type of parser itself. 
+  - This class has two main methods you can use:
+    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - add your own component to parser
+    - `Parse(): T[]`
 
   ## Examples of usage
     You can look in directory 'examples/parser' to see how this subsystem works
