@@ -9,7 +9,7 @@ export type Prioritization<T> = { [priority: Priority]: Box.Base<Component.Base<
 /**
  * @description
  * This class prevents unexpected mutation of successor of environment-objects by parser
- * By saving it as prioritization-object and late-binding of them
+ * by saving it as prioritization-object and late-binding of them
  */
 export class PrioritizationToEnvironmentContainer<T>
 {

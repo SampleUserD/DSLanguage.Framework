@@ -1,6 +1,8 @@
-import { Handler } from "./Handler.js";
+import * as Token from './Token/Main.js'
 
-export interface Component extends Handler
+import { Context } from './Context.js'
+
+export interface Component
 {
-   
+  Scan(context: Context): Token.Base
 }

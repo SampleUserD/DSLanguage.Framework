@@ -1,3 +1,0 @@
-let x = 0
-# Feature: let x: integer = 0 for @a
-x

@@ -1,4 +1,4 @@
-import * as Scanner from "#root/DSLF.Scanner/Scanner"
+import * as Scanner from "#root/DSLF.Scanner/Main"
 import * as Commons from "#root/DSLF.Commons/Main"
 import * as Utilities from "./utilities/Main.js"
 

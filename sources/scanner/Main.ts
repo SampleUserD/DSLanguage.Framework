@@ -1,4 +1,5 @@
-import * as Scanner from "#root/DSLF.Scanner/Scanner"
+import * as Scanner from "#root/DSLF.Scanner/Main"
+import * as Commons from "#root/DSLF.Commons/Main"
 
 import { InfiniteRecursion } from "./Behavior.InfiniteRecursion.js"
 
@@ -32,18 +33,24 @@ import { Word } from "./Token.Word.js"
  * @TODO Pattern-priorities: 0: [...statements] --> 1: [unary + -] --> 2: [binary * /] --> 3: [...] --> ...
  * @TODO Pattern-nodes: base, blocks, primitives, customs
  */
-const scanner: Scanner.Base = new Scanner.Base()
 
-scanner.AddHandler(new MultilineComment('@begin', '@end'))
-scanner.AddHandler(new String(`"`, `"`))
-scanner.AddHandler(new String(`'`, `'`))
+function CreateMinecraftLanguageScanner(input: string): Scanner.Base
+{
+  const scanner: Scanner.Base = new Scanner.Base(new Commons.Cursor<string>(input.split(Commons.Constants.EMPTY_STRING)))
 
-scanner.AddHandler(new Operator())
-scanner.AddHandler(new Comment())
-scanner.AddHandler(new Number())
-scanner.AddHandler(new Space())
-scanner.AddHandler(new Word())
+  scanner.AddHandler(() => new MultilineComment('@begin', '@end'))
+  scanner.AddHandler(() => new String(`"`, `"`))
+  scanner.AddHandler(() => new String(`'`, `'`))
 
-scanner.AddHandler(new InfiniteRecursion(2))
+  scanner.AddHandler(() => new Operator())
+  scanner.AddHandler(() => new Comment())
+  scanner.AddHandler(() => new Number())
+  scanner.AddHandler(() => new Space())
+  scanner.AddHandler(() => new Word())
 
-export { scanner as Base }
+  scanner.AddHandler(() => new InfiniteRecursion(2))
+
+  return scanner
+}
+
+export { CreateMinecraftLanguageScanner as Create }

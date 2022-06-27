@@ -1,5 +1,5 @@
 import * as Commons from '#root/DSLF.Commons/Main'
-import * as Scanner from '#scanner/Scanner'
+import * as Scanner from '#scanner/Main'
 
 /**
  * This function accumulates characters in string 
@@ -13,7 +13,7 @@ export function Accumulate(cursor: Scanner.Commons.Cursor, accumulator: Scanner.
 {
   return (queue: Commons.Queue.Base, data: Commons.Queue.TransferData): void => 
   {
-    for (cursor; accumulator.Matches(cursor.Current()) && cursor.Done == false; cursor.Next())
+    for (cursor; accumulator.Matches(cursor.Current()) == true && cursor.Done == false; cursor.Next())
     {
       accumulator.Accumulate(cursor.Current())
     }

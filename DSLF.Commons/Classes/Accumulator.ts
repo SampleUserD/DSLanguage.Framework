@@ -2,7 +2,7 @@ export class Accumulator<T>
 {
   private _container: T[] = []
 
-  public constructor(private _checker: (item: T) => boolean) {}
+  public constructor(private _checker: (item: T, result: T[]) => boolean) {}
 
   public Accumulate(item: T): void
   {
@@ -12,7 +12,7 @@ export class Accumulator<T>
 
   public Matches(item: T): boolean
   {
-    return this._checker(item) == true
+    return this._checker(item, this._container) == true
   }
 
   public get Result(): T[] 

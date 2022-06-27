@@ -9,6 +9,7 @@ export {
   Parser as Base,
   Nodes as Nodes,
   Components as Components,
-  Environment as Environment,
-  Types as Types
+  Types as Types,
+  
+  type Environment as Environment,
 }
