@@ -6,8 +6,7 @@
     "test": "jest",
     "init-jest": "jest --init",
     "build-dev": "tsc --build . --watch",
-    "test-dev": "node ./.compiled/sources/test.index.js && cls",
-    "index-dev": "node ./.compiled/sources/index.js"
+    "index-dev": "cls && node ./.compiled/sources/index.js"
   },
   "author": {
     "name": "Saitov Denis",
