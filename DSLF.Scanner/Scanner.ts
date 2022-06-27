@@ -1,31 +1,30 @@
-import * as Commons from "#root/DSLF.Commons/Main"
-import * as Token from "./Token/Main.js"
-import * as Types from "./Types.js"
-import * as Factory from "./HandlerFactory.js"
+import * as Token from './Token/Main.js'
+import * as Types from './Types.js'
+import * as Box from './Utility/Box.js'
 
-import { Handler } from "./Handler.js"
+import { Context } from './Context.js'
+import { Handler } from './Handler.js'
 
-class Scanner
+export class Scanner
 {
-  private _handlers: Factory.Base[] = []
+  private _handlers: Box.Base<Handler>[] = []
 
-  public AddHandler(handlerFactory: Handler): void
+  public constructor(private _input: Types.Cursor) {}
+
+  public AddHandler(handlerFactory: Box.Base<Handler>): void
   {
-    this._handlers.push(Factory.Create(handlerFactory))
+    this._handlers.push(handlerFactory)
   }
 
-  public Scan(input: string): Token.Base[]
+  public Scan(): Token.Base[]
   {
     const tokens: Token.Base[] = []
-    const cursor: Types.Cursor = new Commons.Cursor(input.split(Commons.Constants.EMPTY_STRING))
 
-    while (cursor.Done == false)
+    while (this._input.Done == false)
     {
-      this._handlers.forEach(handler => handler().Execute(cursor, tokens))
+      this._handlers.forEach(handler => handler().Execute(this._input, tokens))
     }
 
     return tokens
   } 
 }
-
-export { Handler, Token, Types as Commons, Scanner as Base }

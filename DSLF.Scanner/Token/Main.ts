@@ -1,10 +1,13 @@
-import * as Types from "./Types.js";
-import * as Information from "./Information.js";
+import * as Information from './Information/Main.js'
+import * as Types from './Types/Main.js'
 
-import type { Value } from "./Value.js"
+import { Token, Value, Create } from './Token.js'
 
-type Token = { type: Types.Basic, value: Value, information?: Information.Base  }
+export {
+  Token as Base,
+  Value as Value,
+  Create as Create,
 
-const CreateToken = (type: Types.Basic, value: Value, information?: Information.Base) => ({ type, value, information })
-
-export { Types, Value, Information, CreateToken as Create, Token as Base }
+  Information as Information,
+  Types as Types
+}

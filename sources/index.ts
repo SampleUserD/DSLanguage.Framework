@@ -4,6 +4,7 @@ import * as Parser from '#parser/Main'
 
 import Nodes = Parser.Nodes
 import Component = Parser.Components
+import Context = Parser.Nodes.Additional.Context
 
 // @begin[assign parser nodes]
 
@@ -11,7 +12,7 @@ type StringLike = Nodes.Executable<string>
 type Arithmetic = Nodes.Executable<number>
 type Conditional = Nodes.Executable<boolean>
 
-type Value = Arithmetic | Conditional | StringLike
+type Value = Arithmetic | Conditional | StringLike | Nodes.Executable<void>
 
 class Integer implements Arithmetic
 {
@@ -37,9 +38,9 @@ class Equality implements Conditional
 {
   public constructor(private _left: Value, private _right: Value) {}
 
-  public Execute(): boolean 
+  public Execute(context: Context): boolean 
   {
-    return this._left.Execute() == this._right.Execute()  
+    return this._left.Execute(context) == this._right.Execute(context)  
   }
 }
 
@@ -47,9 +48,9 @@ class Conjuction implements Conditional
 {
   public constructor(private _left: Conditional, private _right: Conditional) {}
 
-  public Execute(): boolean 
+  public Execute(context: Context): boolean 
   {
-    return this._left.Execute() && this._right.Execute()  
+    return this._left.Execute(context) && this._right.Execute(context)  
   }
 }
 
@@ -57,9 +58,9 @@ class Disjuction implements Conditional
 {
   public constructor(private _left: Conditional, private _right: Conditional) {}
 
-  public Execute(): boolean 
+  public Execute(context: Context): boolean 
   {
-    return this._left.Execute() || this._right.Execute()  
+    return this._left.Execute(context) || this._right.Execute(context)  
   }
 }
 
@@ -67,9 +68,9 @@ class Multiplication implements Arithmetic
 {
   public constructor(private _left: Arithmetic, private _right: Arithmetic) {}
 
-  public Execute(): number 
+  public Execute(context: Context): number 
   {
-    return this._left.Execute() * this._right.Execute()
+    return this._left.Execute(context) * this._right.Execute(context)
   }
 }
 
@@ -77,9 +78,9 @@ class Addition implements Arithmetic
 {
   public constructor(private _left: Arithmetic, private _right: Arithmetic) {}
 
-  public Execute(): number 
+  public Execute(context: Context): number 
   {
-    return this._left.Execute() + this._right.Execute()
+    return this._left.Execute(context) + this._right.Execute(context)
   }
 }
 
@@ -250,14 +251,16 @@ class AdditionParser implements Component.Base<Arithmetic>
   }
 }
 
+class EmptyContext implements Context {}
+
 // @end[assign parser components]
 
 // [USE CASE]
 
-const tokens = MinecraftScanner.Base.Scan('1 == 2 or "hello" == "hello"')
+const tokens = MinecraftScanner.Create('1 == 1 or "hello" == "hello!"').Scan()
 
 const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens) // lifetime is unexpected
-const parser: Parser.Base<Nodes.Executable<any>> = new Parser.Base(cursor)
+const parser: Parser.Base<Value> = new Parser.Base(cursor)
 
 parser.Use(0, () => new IntegerParser(cursor))
 parser.Use(0, () => new StringParser(cursor))
@@ -271,5 +274,6 @@ parser.Use(4, () => new DisjuctionParser(cursor))
 parser.Use(4, () => new ConjuctionParser(cursor))
 
 const ast: Nodes.Executable<any>[] = parser.Parse()
+const context: Context = new EmptyContext()
 
-ast.forEach(node => console.log(node.Execute()))
+ast.forEach(node => console.log(node.Execute(context)))
