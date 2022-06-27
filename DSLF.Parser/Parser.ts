@@ -1,15 +1,11 @@
 import * as Commons from '#root/DSLF.Commons/Main'
-import * as Prioritization from './Prioritization/Main.js'
 
 import * as Nodes from './Nodes/Main.js'
 import * as Component from './Component.js'
 import * as DefaultTypes from './Types.js'
-import * as Box from './Box.js'
+import * as Box from './Utility/Box.js'
 
-import { Environment } from './Environment.js'
-import { PrioritizationToEnvironmentContainer } from './PrioritizationToEnvironmentContainer.js'
-
-import Priority = Prioritization.Priority.Base
+import { PrioritizationToEnvironmentContainer, Priority } from './PrioritizationToEnvironmentContainer.js'
 
 export class Parser<T extends Nodes.Base> 
 {
@@ -17,15 +13,15 @@ export class Parser<T extends Nodes.Base>
 
   public constructor(private _cursor: Commons.Cursor<DefaultTypes.Token>) {}
 
-  public Use(priority: Priority, parser: Box.Base<Component.Base<T>>): void 
+  public Use(priority: Priority, wrapper: Box.Base<Component.Base<T>>): void 
   {
-    this._container.Add(priority, parser)
+    this._container.Add(priority, wrapper)
   }
 
   public Parse(): T[] 
   {
     const tree: T[] = []
-    const environment: Environment<T> = this._container.GenerateEnvironment()
+    const environment = this._container.GenerateEnvironment()
 
     while (this._cursor.Done == false)
     {
