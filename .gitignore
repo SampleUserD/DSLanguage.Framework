@@ -1,3 +1,5 @@
+.experimental
 .compiled
 .vscode
+_coverage
 node_modules

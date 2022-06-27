@@ -1,11 +1,12 @@
 {
   "name": "testing-tsconfig-path",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "test": "jest",
+    "init-jest": "jest --init",
     "build-dev": "tsc --build . --watch",
-    "test-dev": "node ./.compiled/sources/test.index.js && cls"
+    "index-dev": "cls && node ./.compiled/sources/index.js"
   },
   "author": {
     "name": "Saitov Denis",
@@ -16,12 +17,14 @@
     "@types/node": "^18.0.0",
     "json-beautify": "^1.1.1",
     "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.3"
   },
   "imports": {
     "#sources/*": "./.compiled/sources/*.js",
     "#root/*": "./.compiled/*.js",
-    "#commons/*": "./.compiled/Minecraft.Commons/*.js",
-    "#scanner/*": "./.compiled/Minecraft.Scanner/*.js"
+    "#commons/*": "./.compiled/DSLF.Commons/*.js",
+    "#scanner/*": "./.compiled/DSLF.Scanner/*.js",
+    "#parser/*": "./.compiled/DSLF.Parser/*.js"
   }
 }

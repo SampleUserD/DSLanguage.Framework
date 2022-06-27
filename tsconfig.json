@@ -1,5 +1,5 @@
 {
-  "exclude": [ "node_modules", ".compiled" ],
+  "exclude": [ "node_modules", ".compiled", "sources/sources.scanner.test" ],
   "compilerOptions": {
     "allowJs": false,
 
@@ -25,9 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "#sources/*": [ "sources/*.ts" ],
-      "#commons/*": [ "Minecraft.Commons/*.ts" ],
+      "#commons/*": [ "DSLF.Commons/*.ts" ],
       "#root/*": [ "*.ts" ],
-      "#scanner/*": [ "Minecraft.Scanner/*.ts" ]
+      "#scanner/*": [ "DSLF.Scanner/*.ts" ],
+      "#parser/*": [ "DSLF.Parser/*.ts" ]
     }
   },
 }
