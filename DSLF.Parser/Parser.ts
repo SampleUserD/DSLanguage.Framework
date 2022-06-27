@@ -4,6 +4,7 @@ import * as Prioritization from './Prioritization/Main.js'
 import * as Nodes from './Nodes/Main.js'
 import * as Component from './Component.js'
 import * as DefaultTypes from './Types.js'
+import * as Box from './Box.js'
 
 import { Environment } from './Environment.js'
 import { PrioritizationToEnvironmentContainer } from './PrioritizationToEnvironmentContainer.js'
@@ -16,7 +17,7 @@ export class Parser<T extends Nodes.Base>
 
   public constructor(private _cursor: Commons.Cursor<DefaultTypes.Token>) {}
 
-  public Use(priority: Priority, parser: Component.Base<T>): void 
+  public Use(priority: Priority, parser: Box.Base<Component.Base<T>>): void 
   {
     this._container.Add(priority, parser)
   }

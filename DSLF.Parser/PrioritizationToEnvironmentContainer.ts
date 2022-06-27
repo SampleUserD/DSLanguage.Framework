@@ -1,10 +1,10 @@
 import * as Component from './Component.js'
-import * as Prioritizations from './Prioritization/Main.js'
+import * as Box from './Box.js'
 
 import { Environment } from './Environment.js'
 
-import Priority = Prioritizations.Priority
-import Prioritization = Prioritizations.Base
+type Priority = number
+type Prioritization<T> = { [priority: Priority]: Box.Base<Component.Base<T>>[] }
 
 /**
  * @description
@@ -14,28 +14,29 @@ import Prioritization = Prioritizations.Base
 export class PrioritizationToEnvironmentContainer<T>
 {
   private _prioritizations: Prioritization<T> = {}
-  private _minimalPriority: Priority.Base = Priority.Default()
+  private _minimalPriority: Priority = 0
 
-  private TryUpdateMinimalPriority(priority: Priority.Base): void 
+  private TryUpdateMinimalPriority(priority: Priority): void 
   { 
     if (priority > this._minimalPriority)
       this._minimalPriority = priority
   }
 
-  private TryCreateEmptyContainer(priority: Priority.Base): void 
+  private TryCreateEmptyContainer(priority: Priority): void 
   {
     if (this.Exists(priority) == false)
       this._prioritizations[priority] = []
   }
 
-  public Exists(priority: Priority.Base): boolean
+  public Exists(priority: Priority): boolean
   {
     return priority in this._prioritizations == true
   }
 
-  public Add(priority: Priority.Base, parser: Component.Base<T>): void 
+  public Add(priority: Priority, parser: Box.Base<Component.Base<T>>): void 
   {
-    Priority.AssertValidation(priority)
+    if (priority < 0)
+      throw new Error(`Priority can not be less than zero: ${ priority } < 0`)
 
     this.TryCreateEmptyContainer(priority)
     this.TryUpdateMinimalPriority(priority)
@@ -47,7 +48,7 @@ export class PrioritizationToEnvironmentContainer<T>
   {
     let currentEnvironment: Environment<T> = new Environment<T>([])
 
-    for (let index = Priority.Default(); index <= this._minimalPriority; index++)
+    for (let index = 0; index <= this._minimalPriority; index++)
     {
       if (this.Exists(index) == false)
       {
