@@ -30,7 +30,7 @@
 # Core
   No documentation yet, because this subsystem does not exist
 
-# Scanner subsystem
+# Scanner subsystem [IN REFACTORING]
   This subsystem translates given text to an stream of tokens (see an example below).
   It is necessary intermediate step for building AST (abstract syntax tree).
 
@@ -43,7 +43,7 @@
   - `interface Scanner.Handler`
   - `class Scanner.Base`
 
-  ## Scanner.Token [IN REFACTORING]
+  ## Scanner.Token
   - Scanner.Token is the namespaces that contains basic definition for Token
   - Token is an object that contains specific information about symbol (DTO)
   - Members:
