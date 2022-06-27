@@ -65,10 +65,14 @@ class Addition implements Arithmetic
 
 class IntegerParser implements Component.Base<Arithmetic>
 {
+  private _count: number = 0
+
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
   public Parse(environment: Parser.Environment<Arithmetic>): void | Arithmetic 
   {
+    console.log(++this._count)
+
     if (this._cursor.Current().type == Parser.Types.TokenTypes.Number)
     {
       const number: string = this._cursor.Current().value
@@ -153,17 +157,17 @@ class AdditionParser implements Component.Base<Arithmetic>
 
 // [USE CASE]
 
-const tokens = MinecraftScanner.Base.Scan('3 + 2 * 2 2 + 3 + 5')
+const tokens = MinecraftScanner.Base.Scan('1 1 1')
 
 const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens)
 const parser: Parser.Base<Nodes.Executable<any>> = new Parser.Base(cursor)
 
-parser.Use(0, new IntegerParser(cursor))
-parser.Use(0, new StringParser(cursor))
+parser.Use(0, () => new IntegerParser(cursor))
+parser.Use(0, () => new StringParser(cursor))
 
-parser.Use(1, new MultiplicationParser(cursor))
-parser.Use(2, new AdditionParser(cursor))
+parser.Use(1, () => new MultiplicationParser(cursor))
+parser.Use(2, () => new AdditionParser(cursor))
 
 const ast: Nodes.Executable<any>[] = parser.Parse()
 
-ast.forEach(node => console.log(node.Execute()))
+// ast.forEach(node => console.log(node.Execute()))
