@@ -8,7 +8,7 @@ export type Prioritization<T> = { [priority: Priority]: Box.Base<Component.Base<
 
 /**
  * @description
- * This class prevents unexpected mutation of successor of environment-objects by parser
+ * This class prevents unexpected and unobvious mutation of successor of environment-objects by parser.
  * by saving it as prioritization-object and late-binding of them
  */
 export class PrioritizationToEnvironmentContainer<T>
@@ -47,8 +47,9 @@ export class PrioritizationToEnvironmentContainer<T>
   public GenerateEnvironment(): Environment<T>
   {
     let currentEnvironment: Environment<T> = new Environment<T>([])
+    let topEnvironment: Environment<T> = new Environment<T>(this._prioritizations[this._minimalPriority])
 
-    for (let index = 0; index <= this._minimalPriority; index++)
+    for (let index = 0; index < this._minimalPriority; index++)
     {
       if (this.Exists(index) == false)
       {
@@ -58,9 +59,13 @@ export class PrioritizationToEnvironmentContainer<T>
       const previousEnvironment = currentEnvironment
 
       currentEnvironment = new Environment<T>(this._prioritizations[index])
+
       currentEnvironment.Successor = previousEnvironment
+      currentEnvironment.Top = topEnvironment
     }
 
-    return currentEnvironment
+    topEnvironment.Successor = currentEnvironment
+
+    return topEnvironment
   }
 }

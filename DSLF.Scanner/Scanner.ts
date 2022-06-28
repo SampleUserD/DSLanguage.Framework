@@ -11,9 +11,9 @@ export class Scanner
 
   public constructor(private _input: Types.Cursor) {}
 
-  public AddHandler(handlerFactory: Box.Base<Handler>): void
+  public AddHandler(handler: Box.Base<Handler>): void
   {
-    this._handlers.push(handlerFactory)
+    this._handlers.push(handler)
   }
 
   public Scan(): Token.Base[]
@@ -22,7 +22,7 @@ export class Scanner
 
     while (this._input.Done == false)
     {
-      this._handlers.forEach(handler => handler().Execute(this._input, tokens))
+      this._handlers.forEach(handler => Box.Unwrap(handler).Execute(this._input, tokens))
     }
 
     return tokens

@@ -16,6 +16,11 @@ export class Parser<T extends Nodes.Base>
     this._container.Add(priority, wrapper)
   }
 
+  public UseTerminal(wrapper: Box.Base<Component.Base<T>>): void 
+  {
+    this.Use(0, wrapper)
+  }
+
   public Parse(): T[] 
   {
     const tree: T[] = []

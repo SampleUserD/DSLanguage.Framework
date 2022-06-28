@@ -2,9 +2,9 @@ import * as Nodes from './Nodes/Main.js'
 import * as Components from './Component.js'
 import * as Box from './Utility/Box.js'
 
-import { Descendant } from './Descendant.js'
+import { DescendantWithReferenceToTop } from './DescendantWithReferenceToTop.js'
 
-export class Environment<T extends Nodes.Base> extends Descendant<T | void> 
+export class Environment<T extends Nodes.Base> extends DescendantWithReferenceToTop<T | void> 
 {
   public constructor(private _wrappedComponents: Box.Base<Components.Base<T>>[]) 
   {
@@ -15,7 +15,7 @@ export class Environment<T extends Nodes.Base> extends Descendant<T | void>
   {
     for (let wrappedComponent of this._wrappedComponents)
     {
-      const result: T | void = Box.Unwrap<Components.Base<T>>(wrappedComponent).Parse(this)
+      const result: T | void = Box.Unwrap(wrappedComponent).Parse(this)
 
       if (result !== undefined)
       {

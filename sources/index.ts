@@ -14,6 +14,44 @@ type Conditional = Nodes.Executable<boolean>
 
 type Value = Arithmetic | Conditional | StringLike | Nodes.Executable<void>
 
+
+class VariableContext implements Context
+{
+  private _variables: Map<string, Value> = new Map()
+
+  public SetVariable(name: string, value: Value): void 
+  {
+    this._variables.set(name, value)
+  }
+
+  public GetVariable(name: string): Value 
+  {
+    return this._variables.get(name) as Value
+  }
+}
+
+class VariableAddress implements Nodes.Executable<string | number | boolean>
+{
+  public constructor(private _name: string) {}
+
+  public Execute(context: VariableContext): string | number | boolean 
+  {
+    return context.GetVariable(this._name).Execute(context) as (string | number | boolean)
+  }
+}
+
+class VariableAssignation implements Nodes.Executable<string | number | boolean>
+{
+  public constructor(private _name: string, private _value: Value) {}
+
+  public Execute(context: VariableContext): string | number | boolean 
+  {
+    context.SetVariable(this._name, this._value)
+
+    return this._value.Execute(context) as string | number | boolean 
+  }
+}
+
 class Integer implements Arithmetic
 {
   public constructor(private _value: number) {}
@@ -87,13 +125,78 @@ class Addition implements Arithmetic
 // @end[assign parser nodes]
 // @begin[assign parser components]
 
+class VariableAddressParser implements Component.Base<Value>
+{
+  public constructor(private _cursor: Parser.Types.Cursor) {}
+
+  public Parse(): void | Value 
+  {
+    if (this._cursor.Current().value == '%')
+    {
+      this._cursor.Next()
+
+      if (this._cursor.Current().type.Equals(Parser.Types.TokenTypes.Word) == true)
+      {
+        const name: string = this._cursor.Current().value
+
+        this._cursor.Next()
+
+        return new VariableAddress(name)
+      }
+    }
+  }
+}
+
+class VariableAssignationParser implements Component.Base<Value>
+{
+  public constructor(private _cursor: Parser.Types.Cursor) {}
+
+  public Parse(layer: Parser.LayerWithReferenceToTop<Value>): void | Value 
+  {
+    if (this._cursor.Current().value == 'let')
+    {
+      this._cursor.Next()
+
+      const name: string = this._cursor.Current().value
+
+      this._cursor.Next()
+
+      if (this._cursor.Current().value == '=')
+      {
+        this._cursor.Next()
+
+        return new VariableAssignation(name, layer.ExecuteTopParser() as Value)
+      }
+    }
+  }
+}
+
+class ReferenceToTopExpressionParser implements Component.Base<Value>
+{
+  public constructor(private _cursor: Parser.Types.Cursor) {}
+
+  public Parse(layer: Parser.LayerWithReferenceToTop<Value>): void | Value 
+  {
+    if (this._cursor.Current().value == '(')
+    {
+      this._cursor.Next()
+
+      const expression: Value = layer.ExecuteTopParser() as Value
+
+      this._cursor.Next()
+
+      return expression
+    }
+  }
+}
+
 class IntegerParser implements Component.Base<Arithmetic>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Arithmetic>): void | Arithmetic 
+  public Parse(): void | Arithmetic 
   {
-    if (this._cursor.Current().type == Parser.Types.TokenTypes.Number)
+    if (this._cursor.Current().type.Equals(Parser.Types.TokenTypes.Number) == true)
     {
       const number: string = this._cursor.Current().value
 
@@ -108,9 +211,9 @@ class StringParser implements Component.Base<StringLike>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<StringLike>): void | StringLike 
+  public Parse(): void | StringLike 
   {
-    if (this._cursor.Current().type == Parser.Types.TokenTypes.String)
+    if (this._cursor.Current().type.Equals(Parser.Types.TokenTypes.String) == true)
     {
       const string: string = this._cursor.Current().value
 
@@ -125,9 +228,9 @@ class MultiplicationParser implements Component.Base<Arithmetic>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Arithmetic>): Arithmetic 
+  public Parse(layer: Parser.Layer<Arithmetic>): Arithmetic 
   {
-    let result: Arithmetic = environment.ExecuteSuccessorParser() as Arithmetic
+    let result: Arithmetic = layer.ExecuteSuccessorParser() as Arithmetic
 
     while (this._cursor.Done == false)
     {
@@ -135,7 +238,7 @@ class MultiplicationParser implements Component.Base<Arithmetic>
       {
         this._cursor.Next()
 
-        result = new Multiplication(result, environment.ExecuteSuccessorParser() as Arithmetic)
+        result = new Multiplication(result, layer.ExecuteSuccessorParser() as Arithmetic)
 
         continue
       }
@@ -151,9 +254,9 @@ class EquationParser implements Component.Base<Value>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Value>): Value
+  public Parse(layer: Parser.Layer<Value>): Value
   {
-    let result: Value = environment.ExecuteSuccessorParser() as Value
+    let result: Value = layer.ExecuteSuccessorParser() as Value
 
     while (this._cursor.Done == false)
     {
@@ -161,7 +264,7 @@ class EquationParser implements Component.Base<Value>
       {
         this._cursor.Next()
 
-        result = new Equality(result, environment.ExecuteSuccessorParser() as Value)
+        result = new Equality(result, layer.ExecuteSuccessorParser() as Value)
 
         continue
       }
@@ -177,9 +280,9 @@ class ConjuctionParser implements Component.Base<Conditional>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Conditional>): Conditional
+  public Parse(layer: Parser.Layer<Conditional>): Conditional
   {
-    let result: Conditional = environment.ExecuteSuccessorParser() as Conditional
+    let result: Conditional = layer.ExecuteSuccessorParser() as Conditional
 
     while (this._cursor.Done == false)
     {
@@ -187,7 +290,7 @@ class ConjuctionParser implements Component.Base<Conditional>
       {
         this._cursor.Next()
 
-        result = new Conjuction(result, environment.ExecuteSuccessorParser() as Conditional)
+        result = new Conjuction(result, layer.ExecuteSuccessorParser() as Conditional)
 
         continue
       }
@@ -203,9 +306,9 @@ class DisjuctionParser implements Component.Base<Conditional>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Conditional>): Conditional
+  public Parse(layer: Parser.Layer<Conditional>): Conditional
   {
-    let result: Conditional = environment.ExecuteSuccessorParser() as Conditional
+    let result: Conditional = layer.ExecuteSuccessorParser() as Conditional
 
     while (this._cursor.Done == false)
     {
@@ -213,7 +316,7 @@ class DisjuctionParser implements Component.Base<Conditional>
       {
         this._cursor.Next()
 
-        result = new Disjuction(result, environment.ExecuteSuccessorParser() as Conditional)
+        result = new Disjuction(result, layer.ExecuteSuccessorParser() as Conditional)
 
         continue
       }
@@ -229,9 +332,9 @@ class AdditionParser implements Component.Base<Arithmetic>
 {
   public constructor(private _cursor: Parser.Types.Cursor) {}
 
-  public Parse(environment: Parser.Environment<Arithmetic>): Arithmetic 
+  public Parse(layer: Parser.Layer<Arithmetic>): Arithmetic 
   {
-    let result: Arithmetic = environment.ExecuteSuccessorParser() as Arithmetic
+    let result: Arithmetic = layer.ExecuteSuccessorParser() as Arithmetic
 
     while (this._cursor.Done == false)
     {
@@ -239,7 +342,7 @@ class AdditionParser implements Component.Base<Arithmetic>
       {
         this._cursor.Next()
 
-        result = new Addition(result, environment.ExecuteSuccessorParser() as Arithmetic)
+        result = new Addition(result, layer.ExecuteSuccessorParser() as Arithmetic)
 
         continue
       }
@@ -251,19 +354,27 @@ class AdditionParser implements Component.Base<Arithmetic>
   }
 }
 
-class EmptyContext implements Context {}
-
 // @end[assign parser components]
 
 // [USE CASE]
 
-const tokens = MinecraftScanner.Create('1 == 1 or "hello" == "hello!"').Scan()
+const scanner = MinecraftScanner.Create(`
+  (let t = %x) + %t
+`)
+
+console.time('scanner.Scan()')
+const tokens = scanner.Scan()
+console.timeEnd('scanner.Scan()')
 
 const cursor: Parser.Types.Cursor = new Commons.Cursor(tokens) // lifetime is unexpected
+
 const parser: Parser.Base<Value> = new Parser.Base(cursor)
 
-parser.Use(0, () => new IntegerParser(cursor))
-parser.Use(0, () => new StringParser(cursor))
+parser.UseTerminal(() => new VariableAddressParser(cursor))
+parser.UseTerminal(() => new VariableAssignationParser(cursor))
+parser.UseTerminal(() => new ReferenceToTopExpressionParser(cursor))
+parser.UseTerminal(() => new IntegerParser(cursor))
+parser.UseTerminal(() => new StringParser(cursor))
 
 parser.Use(1, () => new MultiplicationParser(cursor))
 parser.Use(2, () => new AdditionParser(cursor))
@@ -273,7 +384,16 @@ parser.Use(3, () => new EquationParser(cursor))
 parser.Use(4, () => new DisjuctionParser(cursor))
 parser.Use(4, () => new ConjuctionParser(cursor))
 
-const ast: Nodes.Executable<any>[] = parser.Parse()
-const context: Context = new EmptyContext()
+console.time('parser.Parse()')
+const ast: Value[] = parser.Parse()
+console.timeEnd('parser.Parse()')
 
+const context: VariableContext = new VariableContext()
+
+context.SetVariable('x', new Integer(10))
+context.SetVariable('y', new Integer(20))
+context.SetVariable('z', new Integer(2))
+
+console.time('executor.Execute()')
 ast.forEach(node => console.log(node.Execute(context)))
+console.timeEnd('executor.Execute()')

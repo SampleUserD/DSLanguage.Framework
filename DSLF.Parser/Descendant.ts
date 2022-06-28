@@ -2,9 +2,9 @@ export abstract class Descendant<T>
 {
   private _successor: Descendant<T> | void = undefined
 
-  public set Successor(environment: Descendant<T> | void) 
+  public set Successor(descendant: Descendant<T> | void) 
   {
-    this._successor = environment
+    this._successor = descendant
   }
 
   public ExecuteSuccessorParser(): T 
