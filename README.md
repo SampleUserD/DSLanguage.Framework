@@ -7,8 +7,9 @@
   </h3>
 </div>
 <div>
-  <h4>First of all, DSLanguage.Framework has two main subsystems</h4>
+  <h4>First of all, DSLanguage.Framework has three main subsystems</h4>
   <ul> 
+    <li>Core</li>
     <li>Scanner</li>
     <li>Parser</li>
   </ul>
@@ -114,7 +115,7 @@
   ## Parser.Base
   - Parser.Base is the type of parser itself. 
   - This class has two main methods you can use:
-    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - add your own component to parser
+    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds your own component to parser with such priority (bigger priority number => less real priority)
     - `Parse(): T[]`
 
   ## Examples of usage
