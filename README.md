@@ -7,9 +7,8 @@
   </h3>
 </div>
 <div>
-  <h4>First of all, DSLanguage.Framework has three main subsystems</h4>
+  <h4>First of all, DSLanguage.Framework has two main subsystems</h4>
   <ul> 
-    <li>Core</li>
     <li>Scanner</li>
     <li>Parser</li>
   </ul>
@@ -30,7 +29,7 @@
 # Core
   No documentation yet, because this subsystem does not exist
 
-# Scanner subsystem [IN REFACTORING]
+# Scanner subsystem
   This subsystem translates given text to an stream of tokens (see an example below).
   It is necessary intermediate step for building AST (abstract syntax tree).
 
