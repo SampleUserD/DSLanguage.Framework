@@ -26,9 +26,6 @@
   </p>
 </div>
 
-# Core
-  No documentation yet, because this subsystem does not exist
-
 # Scanner subsystem
   This subsystem translates given text to an stream of tokens (see an example below).
   It is necessary intermediate step for building AST (abstract syntax tree).
