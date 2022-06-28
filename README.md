@@ -115,7 +115,7 @@
   ## Parser.Base
   - Parser.Base is the type of parser itself. 
   - This class has two main methods you can use:
-    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds your own component to parser with such priority (bigger `priority` => less priority)
+    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds given component to parser with given priority (bigger `priority` => less priority)
     - `Parse(): T[]`
 
   ## Examples of usage
