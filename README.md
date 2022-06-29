@@ -145,9 +145,9 @@
   Go to file [`Examples/Example.ts`](https://github.com/SampleUserD/DSLanguage.Framework/blob/master/Examples/Example.ts) and look at how this used for create your own programming language
 
 # Requirements
+These requirements are unconcrete, so they can be changed in the future
 - NodeJS (last stable version)
 - NPM
-These requirements are unconcrete, so they can be changed in the future
 
 # How to download and configure this package
 1. Go to folder with your project
