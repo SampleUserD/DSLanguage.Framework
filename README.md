@@ -21,13 +21,13 @@
   <h4>Additional links and possible questions</h4>
   <ul> 
     <li>
+      <a href="#examples-of-usage">Examples of usage</a>
+    </li>
+    <li>
       <a href="#requirements">Requirements</a>
     </li>
     <li>
       <a href="#how-to-download-and-configure-this-package">How to download and configure this package</a>
-    </li>
-    <li>
-      <a href="#examples-of-usage">Examples of usage</a>
     </li>
   </ul>
 </div>
