@@ -1,6 +1,6 @@
-import * as Commons from '#commons'
-import * as Scanner from '#scanner'
-import * as Parser from '#parser'
+import * as Commons from './DSLF.Commons/Main.js'
+import * as Scanner from './DSLF.Scanner/Main.js'
+import * as Parser from './DSLF.Parser/Main.js'
 
 export {
   Commons as Commons,
