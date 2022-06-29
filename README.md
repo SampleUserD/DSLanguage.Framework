@@ -30,7 +30,7 @@
 
   ## Scanner.Token
   - Scanner.Token is the namespaces that contains basic definition for Token
-  - Token is an object that contains specific information about language symbol (DTO)
+  - Token is an object that contains specific information about language symbol
   - Members:
     - `namespace Types`
       - `class Base` - basic definition for type of token
