@@ -81,7 +81,7 @@
   - `Scanner.Base` is the type of scanner itself
   - This class has two main methods to use:
     - `Scan(input: string): Scanner.Token.Base[]` - scans input by customisable handler
-    - `AddHandler(handler: Scanner.Handler): void` - adds customisable handler
+    - `Use(component: () => Scanner.Component): void` - adds customisable handler
 
 # Parser subsystem
   This subsystem translates given stream of token to [AST (abstract syntax tree)](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
