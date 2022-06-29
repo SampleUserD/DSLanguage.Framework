@@ -1,10 +1,12 @@
+/**
+ * @requires 'js-ds-language-framework'
+ */
+
 /** 
  * Commons is just a library with common classes
  * That is very convenience to use 
  */
-import * as Commons from '../DSLF.Commons/Main.js';
-import * as Scanner from '../DSLF.Scanner/Main.js';
-import * as Parser from '../DSLF.Parser/Main.js';
+import { Commons, Scanner, Parser } from 'js-ds-language-framework';
 
 import Token = Scanner.Token.Base;
 import CreateToken = Scanner.Token.Create;
