@@ -3,7 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "main": "Main.ts",
-  
+
+  "keywords": [
+    "language",
+    "language-translator",
+    "language-intepreter",
+    "language-parser",
+    "language-scanner",
+    "parser",
+    "scanner",
+    "translator",
+    "interpreter"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/SampleUserD/DSLanguage.Framework"
