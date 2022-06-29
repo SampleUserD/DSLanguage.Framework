@@ -4,7 +4,7 @@ import * as Box from './Utility/Box.js'
 import { Environment } from './Environment.js'
 
 export type Priority = number
-export type Prioritization<T> = { [priority: Priority]: Box.Base<Component.Base<T>>[] }
+export type Prioritization<T> = { [priority: number]: Box.Base<Component.Base<T>>[] }
 
 /**
  * @description

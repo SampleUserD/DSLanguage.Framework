@@ -1,5 +1,5 @@
 {
-  "exclude": [ "node_modules", ".compiled", "sources/sources.scanner.test" ],
+  "exclude": [ "node_modules" ],
   "compilerOptions": {
     "allowJs": false,
 
@@ -11,6 +11,9 @@
     "strict": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
+
+    "declaration": true,
+    "declarationDir": ".compiled",
 
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
