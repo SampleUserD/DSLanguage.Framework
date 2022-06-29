@@ -126,6 +126,17 @@
   ## Examples of usage
     You can look in directory 'examples/parser' to see how this subsystem works
 
+# Requirements
+- NodeJS (last stable version)
+- NPM
+
+# How to download and configure this package
+- Go to folder with your project
+- Open terminal in this directory
+- Type `npm i typescript`
+- After downloading, type `tsc --build .`
+- Enjoy!
+
 ___
 
 ***This package created by Saitov Denis***
