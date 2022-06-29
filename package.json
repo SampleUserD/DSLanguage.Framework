@@ -2,12 +2,6 @@
   "name": "testing-tsconfig-path",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "test": "jest",
-    "init-jest": "jest --init",
-    "build-dev": "tsc --build . --watch",
-    "index-dev": "cls && node ./.compiled/sources/index.js"
-  },
   "author": {
     "name": "Saitov Denis",
     "email": "hecntv140@gmail.com"
