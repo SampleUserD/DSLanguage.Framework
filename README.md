@@ -21,6 +21,9 @@
   <h4>Additional links and possible questions</h4>
   <ul> 
     <li>
+      <a href="#examples-of-usage">Examples of usage</a>
+    </li>
+    <li>
       <a href="#requirements">Requirements</a>
     </li>
     <li>
@@ -138,10 +141,11 @@
     - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds non-terminal expression parsers to base parser with given priority (bigger `priority` = less priority)
     - `Parse(): T[]`
 
-# Example of usage
-
+# Examples of usage
+  Go to file [`Examples/Example.ts`](https://github.com/SampleUserD/DSLanguage.Framework/blob/master/Examples/Example.ts) and look at how this used for create your own programming language
 
 # Requirements
+These requirements are unconcrete, so they can be changed in the future
 - NodeJS (last stable version)
 - NPM
 
@@ -149,7 +153,7 @@
 1. Go to folder with your project
 2. Open terminal in this directory
 3. You need to download typescript. Just type npm i typescript to terminal
-4. After downloading, type npm i ds-language-framework --save-dev
+4. After downloading, type `npm i ds-language-framework --save-dev`
 5. You're ready! Enjoy!
 
 ___
