@@ -133,9 +133,8 @@
 # How to download and configure this package
 - Go to folder with your project
 - Open terminal in this directory
-- Type `npm i typescript`
-- After downloading, type `tsc --build .`
-- Enjoy!
+- You need to download typescript. Just type `npm i typescript` into terminal
+- After downloading, type `tsc --build .` into terminal
 
 ___
 
