@@ -2,7 +2,7 @@
 <div>
   <h3>
     <em>
-      Create your own truly amazing programming language from scratch .
+      Create your own truly amazing programming language from scratch. :heart:
     </em>
   </h3>
 </div>
@@ -22,13 +22,13 @@
   `import * as Scanner from '<path-to-framework>/DSLF.Scanner'`
   
   This subsystem has such public components:
-  - <code class="lang-typescript">namespace Scanner.Token</code>
+  - [`namespace Scanner.Token`](/#scanner-token)
   - `namespace Scanner.Commons`
   - `interface Scanner.Component`
   - `interface Scanner.Context`
-  - `class Scanner.Base`
+  - `class Scanner.Base` :bulb:
 
-  ## Scanner.Token
+## Scanner.Token
   - Scanner.Token is the namespaces that contains basic definition for Token
   - Token is an object that contains specific information about language symbol
   - Members:
@@ -46,6 +46,9 @@
 
   ## Scanner.Commons
   - Scanner.Commons is the namespace that contains basic type declarations that necessary for scanner
+  - Members:
+    - `type Cursor`
+    - `type Accumulator`
   
   ## Scanner.Component
   - Scanner.Component is the basic definition for scanner component
@@ -56,7 +59,7 @@
   ## Scanner.Context
   - Scanner.Context is the basic definition for context, where components of scanner can share some information 
 
-  ## Scanner.Base
+  ## Scanner.Base :bulb:
   - Scanner.Base is the type of scanner itself
   - This class has two main methods to use:
     - `Scan(input: string): Scanner.Token.Base[]` - scans input by customisable handler
@@ -77,7 +80,7 @@
   - `namespace Parser.Components`
   - `abstract class Parser.Layer<T extends Parser.Nodes.Base>`
   - `abstract class Parser.LayerWithReferenceToTop<T extends Parser.Nodes.Base>`
-  - `class Parser.Base<T extends Parser.Nodes.Base>`
+  - `class Parser.Base<T extends Parser.Nodes.Base>` :bulb:
   
   ## Parser.Types
   - Parser.Types is the namespace that contains basic type declarations that necessary for parser
@@ -116,7 +119,7 @@
     - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
     - `ExecuteTopParser(): T` - method that calls top layer parser
 
-  ## Parser.Base
+  ## Parser.Base :bulb:
   - `Parser.Base` is the type of parser itself. 
   - This class has two main methods you can use:
     - `UseTerminal(parser: () => Parser.Component.Base<T>): void` - methods that adds terminal expression parsers to base parser
@@ -133,9 +136,9 @@
 # How to download and configure this package
 - Go to folder with your project
 - Open terminal in this directory
-- You need to download typescript. Just type `npm i typescript` into terminal
-- After downloading, type `tsc --build .` into terminal
-- Ready!
+- You need to download typescript. Just type `npm i typescript` to terminal
+- After downloading, type `tsc --build .` to terminal
+- You're ready! Enjoy! :heart:
 
 ___
 
