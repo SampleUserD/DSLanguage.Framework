@@ -154,7 +154,7 @@ These requirements are unconcrete, so they can be changed in the future
 2. Open terminal in this directory
 3. You need to download typescript. Just type `npm i typescript` to terminal
 4. After downloading, type `tsc --build .` to terminal
-5. You get directory './compiled' where are JS-version of this package
+5. You get directory `./compiled` where are JS-version of this package
 6. You're ready! Enjoy! :heart:
 
 ___
