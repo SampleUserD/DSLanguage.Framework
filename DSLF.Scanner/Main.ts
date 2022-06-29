@@ -11,5 +11,5 @@ export {
   Scanner as Base,
 
   Token as Token,
-  Types as Commons,
+  Types as Types,
 }

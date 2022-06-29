@@ -19,4 +19,9 @@ export class Accumulator<T>
   {
     return Array.from(this._container)
   }
+
+  public get Empty(): boolean
+  {
+    return (this._container.length == 0)
+  }
 }
