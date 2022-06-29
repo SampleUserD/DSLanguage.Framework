@@ -151,9 +151,8 @@ These requirements are unconcrete, so they can be changed in the future
 
 # How to download and configure this package
 1. Go to folder with your project
-2. Open terminal in this directory
-3. You need to download typescript. Just type npm i typescript to terminal
-4. After downloading, type `npm i ds-language-framework --save-dev`
+2. Open terminal in this folder
+4. After downloading, type `npm i js-ds-language-framework --save-dev`
 5. You're ready! Enjoy!
 
 ___
