@@ -142,7 +142,7 @@
     - `Parse(): T[]`
 
 # Examples of usage
-  Go to file `Examples/Example.ts` and look at how this used for create
+  Go to file [`Examples/Example.ts`](https://github.com/SampleUserD/DSLanguage.Framework/blob/master/Examples/Example.ts) and look at how this used for create your own programming language
 
 # Requirements
 - NodeJS (last stable version)
