@@ -9,27 +9,42 @@
 <div>
   <h4>First of all, DSLanguage.Framework has two main subsystems</h4>
   <ul> 
-    <li>Scanner</li>
-    <li>Parser</li>
+    <li>
+      <a href="#scanner-subsystem">Scanner</a>
+    </li>
+    <li>
+      <a href="#parser-subsystem">Parser</a>
+    </li>
+  </ul>
+</div>
+<div>
+  <h4>Additional links and possible questions</h4>
+  <ul> 
+    <li>
+      <a href="#requirements">Requirements</a>
+    </li>
+    <li>
+      <a href="#how-to-download-and-configure-this-package">How to download and configure this package</a>
+    </li>
   </ul>
 </div>
 
 # Scanner subsystem
-  This subsystem translates given text to an stream of tokens (see an example below).
-  It is necessary intermediate step for building AST (abstract syntax tree).
+  This subsystem translates given text to an stream of [tokens](https://en.wikipedia.org/wiki/Lexical_token).
+  It is necessary intermediate step for building [AST (abstract syntax tree)](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
 
   You can plug in this subsystem into your code as:
   `import * as Scanner from '<path-to-framework>/DSLF.Scanner'`
   
   This subsystem has such public components:
-  - [`namespace Scanner.Token`](/#scanner-token)
-  - `namespace Scanner.Commons`
-  - `interface Scanner.Component`
-  - `interface Scanner.Context`
-  - `class Scanner.Base` :bulb:
+  - [`namespace Scanner.Token`](#scannertoken)
+  - [`namespace Scanner.Types`](#scannertypes)
+  - [`interface Scanner.Component`](#scannercomponent)
+  - [`interface Scanner.Context`](#scannercontext)
+  - [`class Scanner.Base` :bulb:](#scannerbase)
 
 ## Scanner.Token
-  - Scanner.Token is the namespaces that contains basic definition for Token
+  - `Scanner.Token` is the namespaces that contains basic definition for [Token](https://en.wikipedia.org/wiki/Lexical_token)
   - Token is an object that contains specific information about language symbol
   - Members:
     - `namespace Types`
@@ -44,43 +59,40 @@
       - `value: Token.Value` - value of token
       - `placement: Token.Information.Defaults.Placement` - information about placement of symbol
 
-  ## Scanner.Commons
-  - Scanner.Commons is the namespace that contains basic type declarations that necessary for scanner
+  ## Scanner.Types
+  - `Scanner.Types` is the namespace that contains basic type declarations that necessary for scanner
   - Members:
     - `type Cursor`
     - `type Accumulator`
   
   ## Scanner.Component
-  - Scanner.Component is the basic definition for scanner component
+  - `Scanner.Component` is the basic definition for scanner component
   - Components are main functional parts of scanner (a.k.a "subscanners")
   - Members:
     - `Scan(context: Scanner.Context, cursor: Scanner.Commons.Cursor): Scanner.Token.Base | void` - scanning strategy  
     
   ## Scanner.Context
-  - Scanner.Context is the basic definition for context, where components of scanner can share some information 
+  - `Scanner.Context` is the basic definition for context, where components of scanner can share some information 
 
-  ## Scanner.Base :bulb:
-  - Scanner.Base is the type of scanner itself
+  ## Scanner.Base
+  - `Scanner.Base` is the type of scanner itself
   - This class has two main methods to use:
     - `Scan(input: string): Scanner.Token.Base[]` - scans input by customisable handler
     - `AddHandler(handler: Scanner.Handler): void` - adds customisable handler
 
-  ## Examples of usage
-    You can look in directory 'examples/scanner' to see how this subsystem works
-
-# Parser subsystems
-  This subsystem translates given stream of token to AST (see below an example).
+# Parser subsystem
+  This subsystem translates given stream of token to [AST (abstract syntax tree)](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
   
   You can plug in this subsystem into your code as:
   `import * as Parser from '<path-to-framework>/DSLF.Parser'`
 
   This subsystem has such public components:
-  - `namespace Parser.Types`
-  - `namespace Parser.Nodes`
-  - `namespace Parser.Components`
-  - `abstract class Parser.Layer<T extends Parser.Nodes.Base>`
-  - `abstract class Parser.LayerWithReferenceToTop<T extends Parser.Nodes.Base>`
-  - `class Parser.Base<T extends Parser.Nodes.Base>` :bulb:
+  - [`namespace Parser.Types`](#parsertypes)
+  - [`namespace Parser.Nodes`](#parsernodes)
+  - [`namespace Parser.Components`](#parsercomponents)
+  - [`abstract class Parser.Layer<T extends Parser.Nodes.Base>`](#parserlayer)
+  - [`abstract class Parser.LayerWithReferenceToTop<T extends Parser.Nodes.Base>`](#parserlayerwithreferencetotop)
+  - [`class Parser.Base<T extends Parser.Nodes.Base>` :bulb:](#parserbase)
   
   ## Parser.Types
   - Parser.Types is the namespace that contains basic type declarations that necessary for parser
@@ -100,8 +112,8 @@
     - `namespace Additional`
       - `interface Context`
 
-  ## Parser.Component
-  - `Parser.Component` is the namespace that contains basic definitions for components
+  ## Parser.Components
+  - `Parser.Components` is the namespace that contains basic definitions for components
   - Components are the main functional parts of the parser (a.k.a "subparsers"). 
     The main purpose of the components is generation AST (abstract syntax tree)
   - Members:
@@ -119,26 +131,27 @@
     - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
     - `ExecuteTopParser(): T` - method that calls top layer parser
 
-  ## Parser.Base :bulb:
+  ## Parser.Base
   - `Parser.Base` is the type of parser itself. 
   - This class has two main methods you can use:
     - `UseTerminal(parser: () => Parser.Component.Base<T>): void` - methods that adds terminal expression parsers to base parser
-    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds non-terminal expression parsers to base parser with given priority (bigger `priority` => less priority)
+    - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds non-terminal expression parsers to base parser with given priority (bigger `priority` = less priority)
     - `Parse(): T[]`
 
-  ## Examples of usage
-    You can look in directory 'examples/parser' to see how this subsystem works
+# Example of usage
+
 
 # Requirements
 - NodeJS (last stable version)
 - NPM
 
 # How to download and configure this package
-- Go to folder with your project
-- Open terminal in this directory
-- You need to download typescript. Just type `npm i typescript` to terminal
-- After downloading, type `tsc --build .` to terminal
-- You're ready! Enjoy! :heart:
+1. Go to folder with your project
+2. Open terminal in this directory
+3. You need to download typescript. Just type `npm i typescript` to terminal
+4. After downloading, type `tsc --build .` to terminal
+5. You get directory './compiled' where are JS-version of this package
+6. You're ready! Enjoy! :heart:
 
 ___
 
