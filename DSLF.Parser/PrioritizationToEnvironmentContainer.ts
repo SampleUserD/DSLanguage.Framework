@@ -14,13 +14,7 @@ export type Prioritization<T> = { [priority: Priority]: Box.Base<Component.Base<
 export class PrioritizationToEnvironmentContainer<T>
 {
   private _prioritizations: Prioritization<T> = {}
-  private _minimalPriority: Priority = 0
-
-  private TryUpdateMinimalPriority(priority: Priority): void 
-  { 
-    if (priority > this._minimalPriority)
-      this._minimalPriority = priority
-  }
+  private _priorities: Priority[] = []
 
   private TryCreateEmptyContainer(priority: Priority): void 
   {
@@ -39,26 +33,21 @@ export class PrioritizationToEnvironmentContainer<T>
       throw new Error(`Priority can not be less than zero: ${ priority } < 0`)
 
     this.TryCreateEmptyContainer(priority)
-    this.TryUpdateMinimalPriority(priority)
 
     this._prioritizations[priority].push(parser)
+    this._priorities.push(priority)
   }
 
   public GenerateEnvironment(): Environment<T>
   {
-    let currentEnvironment: Environment<T> = new Environment<T>([])
-    let topEnvironment: Environment<T> = new Environment<T>(this._prioritizations[this._minimalPriority])
+    let currentEnvironment = new Environment<T>(this._prioritizations[this._priorities[0] || 0] || [])
+    let topEnvironment = new Environment<T>(this._prioritizations[this._priorities[this._priorities.length - 1] || 0] || [])
 
-    for (let index = 0; index < this._minimalPriority; index++)
+    for (let index = 1; index < this._priorities.length - 1; index++)
     {
-      if (this.Exists(index) == false)
-      {
-        continue
-      }
-
       const previousEnvironment = currentEnvironment
 
-      currentEnvironment = new Environment<T>(this._prioritizations[index])
+      currentEnvironment = new Environment<T>(this._prioritizations[this._priorities[index]])
 
       currentEnvironment.Successor = previousEnvironment
       currentEnvironment.Top = topEnvironment

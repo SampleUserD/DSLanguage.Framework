@@ -24,11 +24,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "#sources/*": [ "sources/*.ts" ],
-      "#commons/*": [ "DSLF.Commons/*.ts" ],
-      "#root/*": [ "*.ts" ],
-      "#scanner/*": [ "DSLF.Scanner/*.ts" ],
-      "#parser/*": [ "DSLF.Parser/*.ts" ]
+      "#commons": [ "DSLF.Commons/Main.ts" ],
+      "#scanner": [ "DSLF.Scanner/Main.ts" ],
+      "#parser": [ "DSLF.Parser/Main.ts" ]
     }
   },
 }

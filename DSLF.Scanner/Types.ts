@@ -1,4 +1,4 @@
-import * as Commons from "#root/DSLF.Commons/Main"
+import * as Commons from "../DSLF.Commons/Main.js"
 import * as Token from "./Token/Main.js"
 
 export type Cursor = Commons.Cursor<Token.Value>

@@ -1,6 +1,6 @@
 {
   "name": "testing-tsconfig-path",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -14,17 +14,11 @@
   },
   "devDependencies": {
     "@types/jest": "^28.1.1",
-    "@types/node": "^18.0.0",
-    "json-beautify": "^1.1.1",
     "ts-jest": "^28.0.5",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.3"
+    "ts-node": "^10.8.1"
   },
-  "imports": {
-    "#sources/*": "./.compiled/sources/*.js",
-    "#root/*": "./.compiled/*.js",
-    "#commons/*": "./.compiled/DSLF.Commons/*.js",
-    "#scanner/*": "./.compiled/DSLF.Scanner/*.js",
-    "#parser/*": "./.compiled/DSLF.Parser/*.js"
+  "dependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.7.4"
   }
 }

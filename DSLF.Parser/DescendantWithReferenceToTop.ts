@@ -16,4 +16,6 @@ export abstract class DescendantWithReferenceToTop<T> extends Descendant<T>
 
     return this._top.Parse()
   }
+
+  abstract Parse(): T
 }

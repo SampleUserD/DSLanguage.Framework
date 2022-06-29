@@ -1,5 +1,5 @@
-import * as Commons from "#commons/Main"
-import * as Scanner from "#scanner/Main"
+import * as Commons from "../DSLF.Commons/Main.js"
+import * as Scanner from "../DSLF.Scanner/Main.js"
 
 import DefaultTokenTypes = Scanner.Token.Types.Basic
 

@@ -3,7 +3,6 @@ import * as Components from './Component.js'
 import * as Types from './Types.js'
 
 import { Parser } from './Parser.js'
-import { Environment } from './Environment.js'
 import { Descendant } from './Descendant.js'
 import { DescendantWithReferenceToTop } from './DescendantWithReferenceToTop.js'
 
@@ -15,6 +14,4 @@ export {
 
   Descendant as Layer,
   DescendantWithReferenceToTop as LayerWithReferenceToTop,
-  
-  type Environment as Environment,
 }

@@ -2,10 +2,11 @@ import { Type } from './Type.js';
 
 export class BasicTypes
 {
-  static readonly Word = new Type('word')
-  static readonly Number = new Type('number')
-  static readonly String = new Type('string')
-  static readonly Comment = new Type('comment')
-  static readonly Operator = new Type('operator')
-  static readonly Selector = new Type('selector')
+  public static readonly Word = new Type('word')
+  public static readonly Number = new Type('number')
+  public static readonly String = new Type('string')
+  public static readonly Comment = new Type('comment')
+  public static readonly Keyword = new Type('keyword')
+  public static readonly Operator = new Type('operator')
+  public static readonly Selector = new Type('selector')
 }

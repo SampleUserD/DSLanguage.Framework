@@ -3,26 +3,34 @@ import * as Types from './Types.js'
 import * as Box from './Utility/Box.js'
 
 import { Context } from './Context.js'
-import { Handler } from './Handler.js'
+import { Component } from './Component.js'
 
 export class Scanner
 {
-  private _handlers: Box.Base<Handler>[] = []
+  private _components: Box.Base<Component>[] = []
 
   public constructor(private _input: Types.Cursor) {}
 
-  public AddHandler(handler: Box.Base<Handler>): void
+  public Use(component: Box.Base<Component>): void 
   {
-    this._handlers.push(handler)
+    this._components.push(component)
   }
 
-  public Scan(): Token.Base[]
+  public Scan(context: Context): Token.Base[]
   {
     const tokens: Token.Base[] = []
 
     while (this._input.Done == false)
     {
-      this._handlers.forEach(handler => Box.Unwrap(handler).Execute(this._input, tokens))
+      this._components.forEach(component => 
+      {
+        const result = Box.Unwrap(component).Scan(context, this._input)
+        
+        if (result !== undefined)
+        {
+          tokens.push(result as Token.Base)
+        }
+      })
     }
 
     return tokens
