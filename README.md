@@ -135,6 +135,7 @@
 - Open terminal in this directory
 - You need to download typescript. Just type `npm i typescript` into terminal
 - After downloading, type `tsc --build .` into terminal
+- Ready!
 
 ___
 
