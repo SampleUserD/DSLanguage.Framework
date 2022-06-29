@@ -26,6 +26,9 @@
     <li>
       <a href="#how-to-download-and-configure-this-package">How to download and configure this package</a>
     </li>
+    <li>
+      <a href="#examples-of-usage">Examples of usage</a>
+    </li>
   </ul>
 </div>
 
@@ -138,12 +141,13 @@
     - `Use(priority: number, parser: () => Parser.Component.Base<T>): void` - method that adds non-terminal expression parsers to base parser with given priority (bigger `priority` = less priority)
     - `Parse(): T[]`
 
-# Example of usage
-
+# Examples of usage
+  Go to file `Examples/Example.ts` and look at how this used for create
 
 # Requirements
 - NodeJS (last stable version)
 - NPM
+These requirements are unconcrete, so they can be changed in the future
 
 # How to download and configure this package
 1. Go to folder with your project
