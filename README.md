@@ -2,7 +2,7 @@
 <div>
   <h3>
     <em>
-      This framework can help you create your own programming language from scratch.
+      Create your own truly amazing programming language from scratch .
     </em>
   </h3>
 </div>
@@ -22,7 +22,7 @@
   `import * as Scanner from '<path-to-framework>/DSLF.Scanner'`
   
   This subsystem has such public components:
-  - `namespace Scanner.Token`
+  - <code class="lang-typescript">namespace Scanner.Token</code>
   - `namespace Scanner.Commons`
   - `interface Scanner.Component`
   - `interface Scanner.Context`
