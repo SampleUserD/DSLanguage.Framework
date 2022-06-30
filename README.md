@@ -24,9 +24,6 @@
       <a href="#examples-of-usage">Examples of usage</a>
     </li>
     <li>
-      <a href="#requirements">Requirements</a>
-    </li>
-    <li>
       <a href="#how-to-download-and-configure-this-package">How to download and configure this package</a>
     </li>
   </ul>
@@ -145,11 +142,6 @@
 
 # Examples of usage
   Go to file [`Examples/Example.ts`](https://github.com/SampleUserD/DSLanguage.Framework/blob/master/Examples/Example.ts) and look at how this used for create your own programming language
-
-# Requirements
-These requirements are unconcrete, so they can be changed in the future
-- NodeJS (last stable version)
-- NPM
 
 # How to download and configure this package
 1. Go to folder with your project
