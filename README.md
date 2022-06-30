@@ -24,9 +24,6 @@
       <a href="#examples-of-usage">Examples of usage</a>
     </li>
     <li>
-      <a href="#requirements">Requirements</a>
-    </li>
-    <li>
       <a href="#how-to-download-and-configure-this-package">How to download and configure this package</a>
     </li>
   </ul>
@@ -114,6 +111,8 @@
       - `namespace Default.Primitives`
     - `namespace Additional`
       - `interface Context`
+    - `namespace Categories` - namespace that contains various categories for nodes
+      - `type Terminal` - type for [`terminal node`](https://www.geeksforgeeks.org/introduction-to-grammar-in-theory-of-computation/#:~:text=Terminal%20symbols%20are%20those%20which,a%2C%20b%2C%20c%20etc.&text=Non%2DTerminal%20Symbols%20are%20those,the%20component%20of%20the%20sentence.)
 
   ## Parser.Components
   - `Parser.Components` is the namespace that contains basic definitions for components
@@ -143,11 +142,6 @@
 
 # Examples of usage
   Go to file [`Examples/Example.ts`](https://github.com/SampleUserD/DSLanguage.Framework/blob/master/Examples/Example.ts) and look at how this used for create your own programming language
-
-# Requirements
-These requirements are unconcrete, so they can be changed in the future
-- NodeJS (last stable version)
-- NPM
 
 # How to download and configure this package
 1. Go to folder with your project

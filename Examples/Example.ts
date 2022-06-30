@@ -12,6 +12,8 @@ import Token = Scanner.Token.Base;
 import CreateToken = Scanner.Token.Create;
 import BasicTokenTypes = Scanner.Token.Types.Basic;
 
+import Terminal = Parser.Nodes.Categories.Terminal;
+
 /**
  * @classdesc
  * This is example of scanner component usage
@@ -118,7 +120,7 @@ class NumberParser implements Parser.Components.Base<ArithmeticalNode> {
    * 
    * @returns {void | ArithmeticalNode}
    */
-  public Parse(layer: Parser.Layer<void | ArithmeticalNode>): void | ArithmeticalNode {
+  public Parse(layer: Parser.Layer<Terminal<ArithmeticalNode>>): Terminal<ArithmeticalNode> {
     /** 
      * If this parser finds token with type "number" then returns instance of NumberNode
      * Else returns nothing
