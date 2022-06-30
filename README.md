@@ -114,6 +114,8 @@
       - `namespace Default.Primitives`
     - `namespace Additional`
       - `interface Context`
+    - `namespace Categories` - namespace that contains various categories for nodes
+      - `type Terminal` - type for [`terminal node`](https://www.geeksforgeeks.org/introduction-to-grammar-in-theory-of-computation/#:~:text=Terminal%20symbols%20are%20those%20which,a%2C%20b%2C%20c%20etc.&text=Non%2DTerminal%20Symbols%20are%20those,the%20component%20of%20the%20sentence.)
 
   ## Parser.Components
   - `Parser.Components` is the namespace that contains basic definitions for components
