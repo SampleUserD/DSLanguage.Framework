@@ -120,7 +120,7 @@ class NumberParser implements Parser.Components.Base<ArithmeticalNode> {
    * 
    * @returns {void | ArithmeticalNode}
    */
-  public Parse(layer: Parser.Layer<Terminal<ArithmeticalNode>>): Terminal<ArithmeticalNode> {
+  public Parse(layer: Parser.Layer.Base<Terminal<ArithmeticalNode>>): Terminal<ArithmeticalNode> {
     /** 
      * If this parser finds token with type "number" then returns instance of NumberNode
      * Else returns nothing
