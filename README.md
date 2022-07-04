@@ -122,16 +122,14 @@
     - `interface Base<T extends Parser.Nodes.Base>` - definition for basic component
       - `Base.Parse(environment: Environment<T>): T` - parsing strategy
 
-  ## Parser.Layer
-  - `Parser.Layer` is a part of recursive descent parsing
+  ## Parser.Layers
+  - `Parser.Layers` is the namespace that contains basic layer definition
   - Members:
-    - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
-    
-  ## Parser.LayerWithReferenceToTop
-  - `Parser.LayerWithReferenceToTop` is the same as `Parser.Layer` but with reference to top layer
-  - Members:
-    - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
-    - `ExecuteTopParser(): T` - method that calls top layer parser
+    - `abstract class Base<T extends Parser.Nodes.Base>` - is a part of recursive descent parsing
+      - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
+    - `abstract class WithReferenceToTop<T extends Parser.Nodes.Base>` - is the same as `Parser.Layer` but with reference to top layer
+      - `ExecuteSuccessorParser(): T` - method that calls successor layer parser
+      - `ExecuteTopParser(): T` - method that calls top layer parser
 
   ## Parser.Base
   - `Parser.Base` is the type of parser itself. 
